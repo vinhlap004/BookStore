@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="Bookstore.UserControls.Manager_Inventory_UserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bookstore.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <StackPanel Margin="10" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <DockPanel LastChildFill="False">
+            <Button Name="AddProduct_Button" Content="Add Product" Margin="5 0 5 0" Width="120" Height="30"/>
+            <Button Name="UpdateProduct_Button" Content="Update" Margin="5 0 5 0" Width="120" Height="30"/>
+            <Button Name="Delete_Button" Content="Delete" Margin="5 0 5 0" Width="120" Height="30"/>
+           
+            <Button DockPanel.Dock="Right" Style="{DynamicResource MaterialDesignToolButton}" >
+                <materialDesign:PackIcon Kind="Magnify" Opacity=".56"/>
+            </Button>
+            <TextBox DockPanel.Dock="Right" Margin="8 0 0 0" materialDesign:HintAssist.Hint="Search" Padding="2 0 0 0" FontSize="15" Height="30" Background="White"
+             BorderThickness="0"
+            Width="250" VerticalAlignment="Center"/>
+
+            <!--fillter-->
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                <CheckBox Name="PopupEnabled" IsChecked="False" FontSize="15">
+                    Filter
+                </CheckBox>
+                <materialDesign:PopupBox StaysOpen="True" IsEnabled="{Binding IsChecked, ElementName=PopupEnabled}">
+                    <Grid Width="300" Margin="8,8,8,8">
+                        <Grid.Resources>
+                            <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
+                                <Setter Property="Margin" Value="8,8,10,8" />
+                            </Style>
+                            <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                                <Setter Property="materialDesign:HintAssist.IsFloating" Value="True" />
+                                <Setter Property="Margin" Value="8,8,8,8" />
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="8,8,8,16"> OPTIONS</TextBlock>
+                        <TextBox Grid.Column="0" Grid.Row="1" materialDesign:HintAssist.Hint="Setting 1" Text="200" />
+                        <TextBox Grid.Column="0" Grid.Row="2" materialDesign:HintAssist.Hint="Setting 2" Text="400" />
+                        <TextBox Grid.Column="0" Grid.Row="3" materialDesign:HintAssist.Hint="Setting 3" Text="600" />
+                        <CheckBox Grid.Column="1"  Grid.Row="1" VerticalAlignment="Bottom" />
+                        <CheckBox Grid.Column="1"  Grid.Row="2" IsChecked="True" VerticalAlignment="Bottom" />
+                        <CheckBox Grid.Column="1" Grid.Row="3"  VerticalAlignment="Bottom" />
+                        <ComboBox Grid.Column="0" Grid.Row="4" materialDesign:HintAssist.Hint="Type of product" materialDesign:HintAssist.IsFloating="True" MaxDropDownHeight="200" Margin="8 8 8 8">
+                            <ComboBoxItem>
+                                All Types
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Book
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Stationery
+                            </ComboBoxItem>
+                        </ComboBox>
+                        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button Content="_OK" Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}" />
+                            <Button Content="_Cancel" Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}"/>
+                        </StackPanel>
+                    </Grid>
+                </materialDesign:PopupBox>
+            </StackPanel>
+            <!--end fillter-->
+
+        </DockPanel>
+        <ListView Name="Customer_ListView" Margin="0 10 0 0" HorizontalAlignment="Stretch" MinHeight="380" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Edit"/>
+                    <MenuItem Header="Delete"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding ID}"/>
+                    <GridViewColumn Header="ProductName" Width="200" DisplayMemberBinding="{Binding ProductName}"/>
+                    <GridViewColumn Header="Prince" Width="100" DisplayMemberBinding="{Binding Prince}"/>
+                    <GridViewColumn Header="Amount" Width="80" DisplayMemberBinding="{Binding Amount}"/>
+                    <GridViewColumn Header="Input Date" Width="120" DisplayMemberBinding="{Binding Input_Date}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
+</UserControl>
