@@ -23,9 +23,14 @@ namespace Bookstore
     {
         public MainWindow()
         {
-            LoginWindow loginWindow = new LoginWindow();
-            loginWindow.ShowDialog();  
             InitializeComponent();
+
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.ShowDialog();
+            if (loginWindow.DialogResult == false)
+            {
+                this.Close();
+            }
         }
 
         // lấy quyền sử dụng từ database

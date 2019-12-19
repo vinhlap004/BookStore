@@ -68,6 +68,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BUS\CheckoutBus.cs" />
+    <Compile Include="BUS\LoginBus.cs" />
+    <Compile Include="BUS\ManagerAcountBus.cs" />
+    <Compile Include="BUS\ManagerInventoryBus.cs" />
+    <Compile Include="BUS\SaleReportBus.cs" />
     <Compile Include="UserControls\Checkout_UserControl.xaml.cs">
       <DependentUpon>Checkout_UserControl.xaml</DependentUpon>
     </Compile>
@@ -166,6 +171,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\warehouse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DAO\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

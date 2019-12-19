@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bookstore.BUS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,24 @@ namespace Bookstore
     /// </summary>
     public partial class LoginWindow : Window
     {
+        LoginBus login = new LoginBus();
         public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        private void Login_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (login.IsUser("",""))
+            {
+                DialogResult = true;
+                Close();
+            }
+            else
+            {
+                DialogResult = false;
+                MessageBox.Show("Your username or password not correct!!");
+            } 
         }
     }
 }
