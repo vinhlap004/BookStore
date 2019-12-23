@@ -7,8 +7,8 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Margin="10" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-        <DockPanel LastChildFill="False">
+    <DockPanel LastChildFill="True" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
             <Button Name="Add_Account" Content="Add Account" Margin="5 0 5 0" Width="120" Height="30"/>
             <Button Name="EditAccount_Button" Content="Edit" Margin="5 0 5 0" Width="120" Height="30"/>
             <Button Name="DeleteAccount_Button" Content="Delete" Margin="5 0 5 0" Width="120" Height="30"/>
@@ -40,5 +40,5 @@
                 </GridView>
             </ListView.View>
         </ListView>
-    </StackPanel>
+    </DockPanel>
 </UserControl>

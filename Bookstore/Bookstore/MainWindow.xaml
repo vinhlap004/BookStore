@@ -6,6 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:userControl="clr-namespace:Bookstore.UserControls"
         mc:Ignorable="d" Loaded="Window_Loaded"
+        WindowState="Maximized"
         Title="Book Store" Height="450" Width="800" WindowStartupLocation="CenterScreen">
 
 

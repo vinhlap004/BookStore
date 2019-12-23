@@ -24,5 +24,10 @@ namespace Bookstore.UserControls
         {
             InitializeComponent();
         }
+
+        private void Customer_ListView_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
