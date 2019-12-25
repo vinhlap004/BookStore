@@ -31,3 +31,8 @@ C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Softwa
 C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\obj\Debug\Bookstore.csproj.CopyComplete
 C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\obj\Debug\Bookstore.exe
 C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\obj\Debug\Bookstore.pdb
+C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\bin\Debug\EntityFramework.dll
+C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\bin\Debug\EntityFramework.xml
+C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\obj\Debug\Bookstore_Content.g.cs

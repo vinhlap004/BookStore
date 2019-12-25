@@ -1,4 +1,5 @@
-﻿using Bookstore.UserControls;
+﻿using Bookstore.Binding;
+using Bookstore.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace Bookstore
             {
                 this.Close();
             }
+        
         }
 
         // lấy quyền sử dụng từ database
@@ -117,6 +119,24 @@ namespace Bookstore
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            var db = new Dao();
+            //var mydb = (from a in db.DB.Accounts
+            //           join b in db.DB.TypeAccounts on a.TypeAccountID equals b.ID
+            //           join c in db.DB.UserInfoes on a.ID equals c.UserID
+            //           select new
+            //           {
+            //               id = a.ID,
+            //               account = a.Username,
+            //               typeAccount = b.TypeAccount1,
+            //               name= c.Name,
+            //               phone = c.PhoneNumber,
+            //           }).ToList();
+
+            //foreach (var item in mydb)
+            //{
+            //    MessageBox.Show($"{item.id}-{item.account}-{item.typeAccount}-{item.name}-{item.phone}");
+            //}
+
             LoadButton();
             foreach (var item in myButtonList)
             {
