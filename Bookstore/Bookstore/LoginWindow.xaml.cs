@@ -26,16 +26,16 @@ namespace Bookstore
             InitializeComponent();
         }
 
+        // login: Username: admin password: Ad@123
         private void Login_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (login.IsUser("",""))
+            if (login.checkLogin(UserName_TextBox.Text,Password_Box.Password))
             {
                 DialogResult = true;
                 Close();
             }
             else
             {
-                DialogResult = false;
                 MessageBox.Show("Your username or password not correct!!");
             } 
         }
