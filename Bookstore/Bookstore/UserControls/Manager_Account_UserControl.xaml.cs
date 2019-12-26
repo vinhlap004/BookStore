@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Bookstore.BUS;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +22,16 @@ namespace Bookstore.UserControls
     /// </summary>
     public partial class Manager_Account_UserControl : UserControl
     {
+
+        ManagerAcountBus managerAccount = new ManagerAcountBus();
         public Manager_Account_UserControl()
         {
             InitializeComponent();
+        }
+        
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            ManagerAccount_ListView.ItemsSource = managerAccount.Show();
         }
     }
 }

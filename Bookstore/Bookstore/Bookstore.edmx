@@ -27,7 +27,8 @@
           </Key>
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="Name" Type="ntext" />
-          <Property Name="Gender" Type="bit" />
+          <Property Name="Dayofbirth" Type="ntext" />
+          <Property Name="Gender" Type="ntext" />
           <Property Name="PhoneNumber" Type="ntext" />
           <Property Name="Address" Type="ntext" />
           <Property Name="MoreInfo" Type="ntext" />
@@ -157,7 +158,8 @@
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="Boolean" />
+          <Property Name="Dayofbirth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MoreInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -206,6 +208,7 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Dayofbirth" ColumnName="Dayofbirth" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>

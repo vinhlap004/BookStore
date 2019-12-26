@@ -16,7 +16,8 @@ namespace Bookstore
     {
         public int UserID { get; set; }
         public string Name { get; set; }
-        public Nullable<bool> Gender { get; set; }
+        public string Dayofbirth { get; set; }
+        public string Gender { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public string MoreInfo { get; set; }

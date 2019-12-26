@@ -32,13 +32,10 @@ namespace Bookstore
                 this.Close();
             }
         }
-
         // lấy quyền sử dụng từ database
         List<int> usable_Button = new List<int>();
-
         // List button
         List<Button> myButtonList = new List<Button>();
-
 
         /// <summary>
         /// load các button mà user có thể sự dụng được lên màn hình
@@ -117,6 +114,7 @@ namespace Bookstore
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            
             //var db = new Dao();
             //var mydb = (from a in db.DB.Accounts
             //           join b in db.DB.TypeAccounts on a.TypeAccountID equals b.ID

@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="BookstoreModel.TypeAccount" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="BookstoreModel.FK_Account_TypeAccount1" ManuallyRouted="false" />
         <AssociationConnector Association="BookstoreModel.FK_TypeAccount_TypeAccount" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="BookstoreModel.UserInfo" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="BookstoreModel.UserInfo" Width="1.5" PointX="5.375" PointY="0.75" />
         <AssociationConnector Association="BookstoreModel.FK_UserInfo_Account" />
       </Diagram>
     </edmx:Diagrams>
