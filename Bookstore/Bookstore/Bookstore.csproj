@@ -102,6 +102,12 @@
     <Compile Include="BUS\ManagerInventoryBus.cs" />
     <Compile Include="BUS\SaleReportBus.cs" />
     <Compile Include="Dao.cs" />
+    <Compile Include="Dialog\AddAccount.xaml.cs">
+      <DependentUpon>AddAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\EditAccount.xaml.cs">
+      <DependentUpon>EditAccount.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TypeAccount.cs">
       <DependentUpon>Bookstore.tt</DependentUpon>
     </Compile>
@@ -123,6 +129,14 @@
     <Compile Include="UserInfo.cs">
       <DependentUpon>Bookstore.tt</DependentUpon>
     </Compile>
+    <Page Include="Dialog\AddAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\EditAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

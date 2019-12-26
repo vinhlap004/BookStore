@@ -9,9 +9,9 @@
              d:DesignHeight="450" d:DesignWidth="1080">
     <DockPanel LastChildFill="True" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
         <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-            <Button Name="Add_Account" Content="Add Account" Margin="5 0 5 0" Width="120" Height="30"/>
-            <Button Name="EditAccount_Button" Content="Edit" Margin="5 0 5 0" Width="120" Height="30"/>
-            <Button Name="DeleteAccount_Button" Content="Delete" Margin="5 0 5 0" Width="120" Height="30"/>
+            <Button Name="Add_Account" Click="Add_Account_Click" Content="Add Account" Margin="5 0 5 0" Width="120" Height="30"/>
+            <Button Name="EditAccount_Button" Click="EditAccount_Button_Click" Content="Edit" Margin="5 0 5 0" Width="120" Height="30"/>
+            <Button Name="DeleteAccount_Button" Click="DeleteAccount_Button_Click" Content="Delete" Margin="5 0 5 0" Width="120" Height="30"/>
 
             <Button DockPanel.Dock="Right" Style="{DynamicResource MaterialDesignToolButton}" >
                 <materialDesign:PackIcon Kind="Magnify" Opacity=".56"/>
@@ -24,7 +24,7 @@
         <ListView Name="ManagerAccount_ListView" Margin="0 10 0 0" HorizontalAlignment="Stretch" MinHeight="380" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Edit"/>
+                    <MenuItem Header="Edit" Click="MenuItem_Click"/>
                     <MenuItem Header="Delete"/>
                 </ContextMenu>
             </ListView.ContextMenu>
@@ -33,7 +33,7 @@
                     <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding ID}"/>
                     <GridViewColumn Header="UserName" Width="120" DisplayMemberBinding="{Binding UserName}"/>
                     <GridViewColumn Header="Type Account" Width="120" DisplayMemberBinding="{Binding TypeAccount}"/>
-                    <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Header="DayofBirth" Width="100" DisplayMemberBinding="{Binding Dayofbirth}"/>
                     <GridViewColumn Header="Gender" Width="80" DisplayMemberBinding="{Binding Gender}"/>
                     <GridViewColumn Header="PhoneNuber" Width="110" DisplayMemberBinding="{Binding PhoneNuber}"/>

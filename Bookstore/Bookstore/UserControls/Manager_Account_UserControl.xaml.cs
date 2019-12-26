@@ -1,4 +1,5 @@
 ﻿using Bookstore.BUS;
+using Bookstore.Dialog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,6 +33,29 @@ namespace Bookstore.UserControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             ManagerAccount_ListView.ItemsSource = managerAccount.Show();
+        }
+
+        private void Add_Account_Click(object sender, RoutedEventArgs e)
+        {
+            AddAccount addAccountDialog = new AddAccount(ManagerAccount_ListView);
+            addAccountDialog.ShowDialog();
+        }
+
+        private void EditAccount_Button_Click(object sender, RoutedEventArgs e)
+        {
+            EditAccount editAccount = new EditAccount();
+            editAccount.ShowDialog();
+        }
+
+        private void DeleteAccount_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            EditAccount editAccount = new EditAccount();
+            editAccount.ShowDialog();
         }
     }
 }

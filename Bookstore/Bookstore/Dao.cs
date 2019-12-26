@@ -13,6 +13,10 @@ namespace Bookstore
         List<Account> getAllAccount();
         List<TypeAccount> getAllTypeAccount();
         List<UserInfo> getAllUserInfo();
+
+        void addAccount(Account account);
+
+        void addUserInfo(UserInfo userInfo);
     };
     class Dao:IDao
     {
@@ -69,6 +73,19 @@ namespace Bookstore
         public List<UserInfo> getAllUserInfo()
         {
             return DB.UserInfoes.ToList();
+        }
+
+        public void addAccount(Account account)
+        {
+            account.Password= MD5Hash(Base64Encode(account.Password));
+            DB.Accounts.Add(account);
+            DB.SaveChanges();
+        }
+
+        public void addUserInfo(UserInfo userInfo)
+        {
+            DB.UserInfoes.Add(userInfo);
+            DB.SaveChanges();
         }
     }
 }
