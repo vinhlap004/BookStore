@@ -13,7 +13,7 @@ namespace Bookstore
         List<Account> getAllAccount();
         List<TypeAccount> getAllTypeAccount();
         List<UserInfo> getAllUserInfo();
-
+        int getUserType(string username);
         void addAccount(Account account);
 
         void addUserInfo(UserInfo userInfo);
@@ -86,6 +86,15 @@ namespace Bookstore
         {
             DB.UserInfoes.Add(userInfo);
             DB.SaveChanges();
+        }
+
+        public int getUserType(string username)
+        {
+            var ListAccount = DB.Accounts.ToList();
+            var accountType = (from acc in ListAccount
+                           where acc.Username == username
+                           select acc).FirstOrDefault<Account>();
+            return accountType.TypeAccountID;
         }
     }
 }

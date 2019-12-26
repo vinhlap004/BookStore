@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bookstore.BUS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace Bookstore.Dialog
     /// </summary>
     public partial class EditAccount : Window
     {
-        public EditAccount()
+        public EditAccount(string Id)
         {
             InitializeComponent();
         }

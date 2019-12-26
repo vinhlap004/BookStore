@@ -21,6 +21,7 @@ namespace Bookstore
     /// </summary>
     public partial class MainWindow : Window
     {
+        string username;
         public MainWindow()
         {
             InitializeComponent();
@@ -31,6 +32,10 @@ namespace Bookstore
             {
                 this.Close();
             }
+            else
+            {
+                username =loginWindow.usernameLogin;
+            }
         }
         // lấy quyền sử dụng từ database
         List<int> usable_Button = new List<int>();
@@ -40,12 +45,20 @@ namespace Bookstore
         /// <summary>
         /// load các button mà user có thể sự dụng được lên màn hình
         /// </summary>
-        private void LoadButton()
+        private void LoadButton(int typeAccount)
         {
-            usable_Button.Add(1);
-            usable_Button.Add(2);
-            usable_Button.Add(3);
-            usable_Button.Add(4);
+            if(typeAccount==1)
+            {
+                usable_Button.Add(1);// manager account
+                usable_Button.Add(2);// manager inventory
+                usable_Button.Add(3);// checkout
+                usable_Button.Add(4);// sale report
+            }
+            else
+            {
+                usable_Button.Add(3);// checkout
+            }
+            
 
             //home button
             Button home_Button = new Button();
@@ -114,26 +127,8 @@ namespace Bookstore
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
-            //var db = new Dao();
-            //var mydb = (from a in db.DB.Accounts
-            //           join b in db.DB.TypeAccounts on a.TypeAccountID equals b.ID
-            //           join c in db.DB.UserInfoes on a.ID equals c.UserID
-            //           select new
-            //           {
-            //               id = a.ID,
-            //               account = a.Username,
-            //               typeAccount = b.TypeAccount1,
-            //               name= c.Name,
-            //               phone = c.PhoneNumber,
-            //           }).ToList();
-
-            //foreach (var item in mydb)
-            //{
-            //    MessageBox.Show($"{item.id}-{item.account}-{item.typeAccount}-{item.name}-{item.phone}");
-            //}
-
-            LoadButton();
+            IDao db = new Dao();
+            LoadButton(db.getUserType(username));
             foreach (var item in myButtonList)
             {
                 ButtonPanel.Children.Add(item);
@@ -196,7 +191,32 @@ namespace Bookstore
 
         private void Logout_Menu_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Hide();
+            CloseMenu_BeginStoryboard.Storyboard.Begin();
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.ShowDialog();
+            if (loginWindow.DialogResult == false)
+            {
+                this.Close();
+            }
+            else
+            {
+                username = loginWindow.usernameLogin;
+                IDao db = new Dao();
+                myButtonList.Clear();
+                usable_Button.Clear();
+                ButtonPanel.Children.Clear();
+                LoadButton(db.getUserType(username));
+                foreach (var item in myButtonList)
+                {
+                    ButtonPanel.Children.Add(item);
+                }
+                My_UserControl.Children.Clear();
+                MenuBar_Tilte_TextBlock.Text = "Home";
+                Home_UserControl home_Screen = new Home_UserControl(usable_Button, My_UserControl, MenuBar_Tilte_TextBlock);
+                My_UserControl.Children.Add(home_Screen); 
+                this.Show();
+            }
         }
     }
 }

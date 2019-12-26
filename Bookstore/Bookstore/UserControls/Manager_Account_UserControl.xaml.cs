@@ -43,8 +43,15 @@ namespace Bookstore.UserControls
 
         private void EditAccount_Button_Click(object sender, RoutedEventArgs e)
         {
-            EditAccount editAccount = new EditAccount();
-            editAccount.ShowDialog();
+            var selectedItem = ManagerAccount_ListView.SelectedItem as BindingAccount;
+            if(selectedItem==null)
+            {
+                MessageBox.Show("Please choose an account you want to edit");
+            }
+            else {
+                EditAccount editAccount = new EditAccount(selectedItem.ID);
+                editAccount.ShowDialog();
+            }
         }
 
         private void DeleteAccount_Button_Click(object sender, RoutedEventArgs e)
@@ -54,8 +61,16 @@ namespace Bookstore.UserControls
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            EditAccount editAccount = new EditAccount();
-            editAccount.ShowDialog();
+            var selectedItem = ManagerAccount_ListView.SelectedItem as BindingAccount;
+            if (selectedItem == null)
+            {
+                MessageBox.Show("Please choose an account you want to edit");
+            }
+            else
+            {
+                EditAccount editAccount = new EditAccount(selectedItem.ID);
+                editAccount.ShowDialog();
+            }
         }
     }
 }

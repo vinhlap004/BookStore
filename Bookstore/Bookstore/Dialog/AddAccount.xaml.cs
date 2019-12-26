@@ -61,7 +61,7 @@ namespace Bookstore.Dialog
             {
                 UserID = newAccount.ID,
                 Name = Name.Text,
-                Dayofbirth = DayofBirth.SelectedDate.ToString(),
+                Dayofbirth = DayofBirth.Text,
                 Gender = gender,
                 PhoneNumber = PhoneNumber.Text,
                 Address = Adress.Text,

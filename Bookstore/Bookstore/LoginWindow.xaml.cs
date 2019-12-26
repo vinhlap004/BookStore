@@ -21,6 +21,7 @@ namespace Bookstore
     public partial class LoginWindow : Window
     {
         LoginBus login = new LoginBus();
+        public string usernameLogin { get; set; }
         public LoginWindow()
         {
             InitializeComponent();
@@ -32,6 +33,7 @@ namespace Bookstore
             if (login.checkLogin(UserName_TextBox.Text,Password_Box.Password))
             {
                 DialogResult = true;
+                usernameLogin = UserName_TextBox.Text;
                 Close();
             }
             else

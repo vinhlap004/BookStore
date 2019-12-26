@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -147,28 +148,28 @@ namespace Bookstore.UserControls
                         break;
                 }
             }
-            stackPnl = new StackPanel();
-            stackPnl.Orientation = Orientation.Vertical;
-            img = new Image();
-            img.Source = new BitmapImage(new Uri("/Images/warehouse.png", UriKind.Relative));
-            img.Width = 70;
-            img.Height = 70;
-            textblock = new TextBlock();
-            textblock.Text = "Logout";
-            textblock.TextWrapping = TextWrapping.Wrap;
-            textblock.HorizontalAlignment = HorizontalAlignment.Center;
-            textblock.FontSize = 12;
-            stackPnl.Children.Add(img);
-            stackPnl.Children.Add(textblock);
-            btn = new Button();
-            btn.Width = 150;
-            btn.Height = 150;
-            btn.Margin = myThickness;
-            btn.Background = new SolidColorBrush(Color.FromRgb(245, 246, 247));
-            btn.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-            btn.Content = stackPnl;
-            btn.Click += Logout_Menu_Button_Click;
-            Menu_Button_WrapPanel.Children.Add(btn);
+            //stackPnl = new StackPanel();
+            //stackPnl.Orientation = Orientation.Vertical;
+            //img = new Image();
+            //img.Source = new BitmapImage(new Uri("/Images/warehouse.png", UriKind.Relative));
+            //img.Width = 70;
+            //img.Height = 70;
+            //textblock = new TextBlock();
+            //textblock.Text = "Logout";
+            //textblock.TextWrapping = TextWrapping.Wrap;
+            //textblock.HorizontalAlignment = HorizontalAlignment.Center;
+            //textblock.FontSize = 12;
+            //stackPnl.Children.Add(img);
+            //stackPnl.Children.Add(textblock);
+            //btn = new Button();
+            //btn.Width = 150;
+            //btn.Height = 150;
+            //btn.Margin = myThickness;
+            //btn.Background = new SolidColorBrush(Color.FromRgb(245, 246, 247));
+            //btn.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            //btn.Content = stackPnl;
+            //btn.Click += Logout_Menu_Button_Click;
+            //Menu_Button_WrapPanel.Children.Add(btn);
 
         }
 
@@ -208,11 +209,6 @@ namespace Bookstore.UserControls
             menuBar_Tilte.Text = "Sale Report";
             Sale_Report_UserControl myScreen = new Sale_Report_UserControl();
             screen.Children.Add(myScreen);
-        }
-
-        private void Logout_Menu_Button_Click(object sender, RoutedEventArgs e)
-        {
-          
         }
 
     }
