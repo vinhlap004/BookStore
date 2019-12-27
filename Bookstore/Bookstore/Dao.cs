@@ -20,6 +20,7 @@ namespace Bookstore
         UserInfo findUserInfoByID(int ID);
         void updateAccount(int ID, string userName,string password,int typeAccount);
         void updateUserInfo(UserInfo newuserInfo);
+        void deleteAccountByID(int ID);
 
 
     };
@@ -133,6 +134,15 @@ namespace Bookstore
             userInfo.PhoneNumber = newuserInfo.PhoneNumber;
             userInfo.Address = newuserInfo.Address;
             userInfo.MoreInfo = newuserInfo.MoreInfo;
+            DB.SaveChanges();
+        }
+
+        public void deleteAccountByID(int ID)
+        {
+            var account = findAccountByID(ID);
+            var userInfo = findUserInfoByID(ID);
+            DB.Accounts.Remove(account);
+            DB.UserInfoes.Remove(userInfo);
             DB.SaveChanges();
         }
     }

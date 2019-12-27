@@ -25,6 +25,7 @@ namespace Bookstore.UserControls
     {
 
         ManagerAcountBus managerAccount = new ManagerAcountBus();
+        IDao db = new Dao();
         public Manager_Account_UserControl()
         {
             InitializeComponent();
@@ -56,7 +57,17 @@ namespace Bookstore.UserControls
 
         private void DeleteAccount_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            var selectedItem = ManagerAccount_ListView.SelectedItem as BindingAccount;
+            if (selectedItem == null)
+            {
+                MessageBox.Show("Please choose an account you want to delete");
+            }
+            else
+            {
+                db.deleteAccountByID(int.Parse(selectedItem.ID));
+                ManagerAccount_ListView.ItemsSource = managerAccount.Show();
+                MessageBox.Show("Delete success");
+            }
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -70,6 +81,21 @@ namespace Bookstore.UserControls
             {
                 EditAccount editAccount = new EditAccount(int.Parse(selectedItem.ID), ManagerAccount_ListView);
                 editAccount.ShowDialog();
+            }
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = ManagerAccount_ListView.SelectedItem as BindingAccount;
+            if (selectedItem == null)
+            {
+                MessageBox.Show("Please choose an account you want to delete");
+            }
+            else
+            {
+                db.deleteAccountByID(int.Parse(selectedItem.ID));
+                ManagerAccount_ListView.ItemsSource = managerAccount.Show();
+                MessageBox.Show("Delete success");
             }
         }
     }
