@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace Bookstore.BUS
 {
-    class BindingAccount
+    public class BindingAccount
     {
         public string ID { get; set; }
         public string UserName { get; set; }

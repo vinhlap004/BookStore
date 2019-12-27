@@ -16,13 +16,13 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="10">
             <TextBlock Text="Password" VerticalAlignment="Center" Margin="0 0 16 0"/>
-            <PasswordBox x:Name="PasswordBox" Width="300"/>
+            <PasswordBox x:Name="PasswordBox" materialDesign:HintAssist.Hint="•••••••" Width="300"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10">
             <TextBlock Text="Account Type" VerticalAlignment="Center" Margin="0 0 20 0"/>
-            <RadioButton GroupName="typeAccount" Content="Admin" Margin="0 0 10 0"/>
-            <RadioButton GroupName="typeAccount" Content="Seller"/>
+            <RadioButton GroupName="typeAccount" Name="Admin_typeAccount" Content="Admin" Margin="0 0 10 0"/>
+            <RadioButton GroupName="typeAccount" Name="Seller_typeAccount" Content="Seller"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10">
@@ -32,14 +32,14 @@
 
         <StackPanel Orientation="Horizontal" Margin="10">
             <TextBlock Text="DayofBirth" VerticalAlignment="Center" Margin="0 0 10 0"/>
-            <DatePicker Width="150" materialDesign:HintAssist.Hint="Pick Date"
+            <DatePicker Name="DayofBirth" Width="150" materialDesign:HintAssist.Hint="Pick Date"
              Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10">
             <TextBlock Text="Gender" VerticalAlignment="Center" Margin="0 0 50 0"/>
-            <RadioButton GroupName="Gender" Content="Male" Margin="0 0 10 0"/>
-            <RadioButton GroupName="Gender" Content="Female"/>
+            <RadioButton GroupName="Gender" Name="Male_Gender" Content="Male" Margin="0 0 10 0"/>
+            <RadioButton GroupName="Gender" Name="Female_Gender"  Content="Female"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10">
@@ -58,8 +58,8 @@
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">
-            <Button Name="EditAccount_Button" Content="Edit" Margin="0 0 30 0" Width="120" Height="30"/>
-            <Button Name="Cancel_Button" DockPanel.Dock="Right" Content="Cancel" Margin="30 0 0 0" Width="120" Height="30"/>
+            <Button Name="EditAccount_Button" Click="EditAccount_Button_Click" Content="Edit" Margin="0 0 30 0" Width="120" Height="30"/>
+            <Button Name="Cancel_Button" Click="Cancel_Button_Click" DockPanel.Dock="Right" Content="Cancel" Margin="30 0 0 0" Width="120" Height="30"/>
         </StackPanel>
     </StackPanel>
 </Window>

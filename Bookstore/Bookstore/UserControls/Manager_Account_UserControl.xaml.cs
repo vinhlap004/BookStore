@@ -49,7 +49,7 @@ namespace Bookstore.UserControls
                 MessageBox.Show("Please choose an account you want to edit");
             }
             else {
-                EditAccount editAccount = new EditAccount(selectedItem.ID);
+                EditAccount editAccount = new EditAccount(int.Parse(selectedItem.ID), ManagerAccount_ListView);
                 editAccount.ShowDialog();
             }
         }
@@ -61,14 +61,14 @@ namespace Bookstore.UserControls
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var selectedItem = ManagerAccount_ListView.SelectedItem as BindingAccount;
+            BindingAccount selectedItem = ManagerAccount_ListView.SelectedItem as BindingAccount;
             if (selectedItem == null)
             {
                 MessageBox.Show("Please choose an account you want to edit");
             }
             else
             {
-                EditAccount editAccount = new EditAccount(selectedItem.ID);
+                EditAccount editAccount = new EditAccount(int.Parse(selectedItem.ID), ManagerAccount_ListView);
                 editAccount.ShowDialog();
             }
         }

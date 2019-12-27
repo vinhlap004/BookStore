@@ -20,9 +20,96 @@ namespace Bookstore.Dialog
     /// </summary>
     public partial class EditAccount : Window
     {
-        public EditAccount(string Id)
+        Account account;
+        UserInfo userInfo;
+        IDao db = new Dao();
+        ListView ManagerAccount_ListView;
+        ManagerAcountBus managerAccount = new ManagerAcountBus();
+        public EditAccount(int ID, ListView managerAccount_ListView)
         {
             InitializeComponent();
+            ManagerAccount_ListView = managerAccount_ListView;
+            account = db.findAccountByID(ID);
+            userInfo = db.findUserInfoByID(ID);
+
+            UserName.Text = account.Username;
+
+            DayofBirth.Text = userInfo.Dayofbirth;
+            if (account.TypeAccountID == 1)
+            {
+                Admin_typeAccount.IsChecked = true;
+            }
+            else
+            {
+                Seller_typeAccount.IsChecked = true;
+            }
+
+            Name.Text = userInfo.Name;
+            DayofBirth.Text = userInfo.Dayofbirth;
+            if (userInfo.Gender == "Male")
+            {
+                Male_Gender.IsChecked = true;
+            }
+            else
+            {
+                Female_Gender.IsChecked = true;
+            }
+            PhoneNumber.Text = userInfo.PhoneNumber;
+            Adress.Text = userInfo.Address;
+            MoreInfo.Text = userInfo.MoreInfo;
+        }
+
+
+        private void EditAccount_Button_Click(object sender, RoutedEventArgs e)
+        {
+            int typeAccount;
+            if (Admin_typeAccount.IsChecked == true)
+            {
+                typeAccount = 1;
+            }
+            else
+            {
+                typeAccount = 2;
+            }
+            string password;
+            if(PasswordBox.Password.Length==0)
+            {
+                password = null;
+            }
+            else
+            {
+                password = PasswordBox.Password;
+            }
+            db.updateAccount(account.ID, UserName.Text, password, typeAccount);
+
+            string gender;
+            if (Male_Gender.IsChecked == true)
+            {
+                gender = "Male";
+            }
+            else
+            {
+                gender = "Female";
+            }
+            var newUserInfo = new UserInfo
+            {
+                UserID = userInfo.UserID,
+                Name = Name.Text,
+                Dayofbirth = DayofBirth.Text,
+                Gender = gender,
+                PhoneNumber = PhoneNumber.Text,
+                Address = Adress.Text,
+                MoreInfo = MoreInfo.Text,
+            };
+            db.updateUserInfo(newUserInfo);
+            ManagerAccount_ListView.ItemsSource = managerAccount.Show();
+            MessageBox.Show("Edit Account Success");
+            Close();
+        }
+
+        private void Cancel_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
