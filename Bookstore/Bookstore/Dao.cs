@@ -226,7 +226,7 @@ namespace Bookstore
 
         public void refreshDB()
         {
-            DB = new Bookstore();
+            DB = new BookstoreEntities();
         }
 
         public void updateAmount(int productID, int descAmount)

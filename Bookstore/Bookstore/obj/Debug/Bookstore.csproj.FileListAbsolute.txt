@@ -40,3 +40,7 @@ C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Softwa
 C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\obj\Debug\Dialog\addAccount.baml
 C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\obj\Debug\Dialog\EditAccount.g.cs
 C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\obj\Debug\Dialog\EditAccount.baml
+C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\obj\Debug\Dialog\AddProduct.g.cs
+C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\obj\Debug\Dialog\UpdateProduct.g.cs
+C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\obj\Debug\Dialog\AddProduct.baml
+C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\obj\Debug\Dialog\UpdateProduct.baml

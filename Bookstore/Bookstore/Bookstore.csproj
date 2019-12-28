@@ -99,6 +99,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Bookstore.edmx</DependentUpon>
     </Compile>
+    <Compile Include="BUS\BillInfo.cs" />
     <Compile Include="BUS\CheckoutBus.cs" />
     <Compile Include="BUS\LoginBus.cs" />
     <Compile Include="BUS\ManagerAcountBus.cs" />
@@ -108,8 +109,14 @@
     <Compile Include="Dialog\AddAccount.xaml.cs">
       <DependentUpon>AddAccount.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\AddProduct.xaml.cs">
+      <DependentUpon>AddProduct.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\EditAccount.xaml.cs">
       <DependentUpon>EditAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\UpdateProduct.xaml.cs">
+      <DependentUpon>UpdateProduct.xaml</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>Bookstore.tt</DependentUpon>
@@ -142,9 +149,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialog\AddProduct.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Dialog\EditAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\UpdateProduct.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
