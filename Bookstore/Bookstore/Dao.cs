@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace Bookstore
 {
@@ -18,15 +18,33 @@ namespace Bookstore
         void addUserInfo(UserInfo userInfo);
         Account findAccountByID(int ID);
         UserInfo findUserInfoByID(int ID);
-        void updateAccount(int ID, string userName,string password,int typeAccount);
+        void updateAccount(int ID, string userName, string password, int typeAccount);
         void updateUserInfo(UserInfo newuserInfo);
         void deleteAccountByID(int ID);
 
+        void refreshDB();
 
+        // Product + Checkout
+        List<Product> getAllProduct();
+        Product findProductByID(int id);
+        void addProduct(Product product);
+        void updateProduct(Product product);
+        void deleteProduct(int productID);
+        void updateAmount(int productID, int newAmount);
+        int getMaxProductID();
+        // Bill 
+
+        int getMaxBillID();
+
+        void addBill(Bill bill);
+
+        //TransactionHistory
+        int getMaxTransactionHistorySTT();
+        void addTransactionHistory(TransactionHistory input);
     };
-    class Dao:IDao
+    class Dao : IDao
     {
-        BookstoreEntities DB = new BookstoreEntities();
+        BookstoreEntities DB = new BookstoreEntities(); // change here
         public bool checkLogin(string userName, string passWord)
         {
             passWord = MD5Hash(Base64Encode(passWord));
@@ -45,8 +63,8 @@ namespace Bookstore
                 return false;
             }
         }
-        
-        
+
+
 
         public static string Base64Encode(string plainText)
         {
@@ -83,7 +101,7 @@ namespace Bookstore
 
         public void addAccount(Account account)
         {
-            account.Password= MD5Hash(Base64Encode(account.Password));
+            account.Password = MD5Hash(Base64Encode(account.Password));
             DB.Accounts.Add(account);
             DB.SaveChanges();
         }
@@ -98,14 +116,14 @@ namespace Bookstore
         {
             var ListAccount = DB.Accounts.ToList();
             var accountType = (from acc in ListAccount
-                           where acc.Username == username
-                           select acc).FirstOrDefault<Account>();
+                               where acc.Username == username
+                               select acc).FirstOrDefault<Account>();
             return accountType.TypeAccountID;
         }
 
         public Account findAccountByID(int ID)
         {
-            return DB.Accounts.SingleOrDefault(id => id.ID == ID);  
+            return DB.Accounts.SingleOrDefault(id => id.ID == ID);
         }
 
         public UserInfo findUserInfoByID(int ID)
@@ -144,6 +162,84 @@ namespace Bookstore
             DB.Accounts.Remove(account);
             DB.UserInfoes.Remove(userInfo);
             DB.SaveChanges();
+        }
+
+        public List<Product> getAllProduct()
+        {
+            return DB.Products.ToList();
+        }
+
+        public Product findProductByID(int id)
+        {
+            return DB.Products.SingleOrDefault(product => product.ID == id);
+        }
+
+        public void addProduct(Product product)
+        {
+            DB.Products.Add(product);
+            DB.SaveChanges();
+        }
+
+        public void updateProduct(Product product)
+        {
+            var productChange = this.findProductByID(product.ID);
+
+            productChange.Name = product.Name;
+            productChange.Price = product.Price;
+            productChange.Amount = product.Amount;
+            productChange.Author = product.Author;
+            productChange.Catalogries = product.Catalogries;
+            productChange.Deliver = product.Deliver;
+
+            DB.SaveChanges();
+        }
+
+        public void deleteProduct(int productID)
+        {
+            var deletedItem = this.findProductByID(productID);
+
+            DB.Products.Remove(deletedItem);
+            DB.SaveChanges();
+        }
+
+        public int getMaxBillID()
+        {
+            return DB.Bills.Max(item => item.ID);
+        }
+
+        public void addBill(Bill bill)
+        {
+            DB.Bills.Add(bill);
+            DB.SaveChanges();
+        }
+
+        public void addTransactionHistory(TransactionHistory input)
+        {
+            DB.TransactionHistories.Add(input);
+            DB.SaveChanges();
+        }
+
+        public int getMaxTransactionHistorySTT()
+        {
+            return DB.TransactionHistories.Max(item => item.STT);
+        }
+
+        public void refreshDB()
+        {
+            DB = new Bookstore();
+        }
+
+        public void updateAmount(int productID, int descAmount)
+        {
+            var productChange = DB.Products.SingleOrDefault(product => product.ID == productID);
+
+            productChange.Amount -= descAmount;
+            DB.SaveChanges();
+        }
+
+        public int getMaxProductID()
+        {
+            return DB.Products.Max(product => product.ID);
         }
     }
 }
