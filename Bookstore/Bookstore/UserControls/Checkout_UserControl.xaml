@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Bookstore.UserControls"
-              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1080">
     <Grid>
@@ -15,12 +15,12 @@
         </Grid.ColumnDefinitions>
         <DockPanel LastChildFill="True" Margin="10"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
             <DockPanel DockPanel.Dock="Top" LastChildFill="True">
-                
-                <Button Name="AddProduct_Button" DockPanel.Dock="Right" Content="Add" Margin="5 0 5 0" Width="80" Height="30"/>
+
+                <Button Name="AddProduct_Button" Click="AddProduct_Button_Click" DockPanel.Dock="Right" Content="Add" Margin="5 0 5 0" Width="80" Height="30"/>
 
                 <!--fillter-->
                 <StackPanel DockPanel.Dock="Right" Grid.Column="0" Orientation="Horizontal">
-                    <CheckBox Name="PopupEnabled" IsChecked="False" FontSize="15">
+                    <CheckBox Name="PopupEnabled" Unchecked="PopupEnabled_Unchecked" IsChecked="False" FontSize="15">
                         Filter
                     </CheckBox>
                     <materialDesign:PopupBox StaysOpen="True" IsEnabled="{Binding IsChecked, ElementName=PopupEnabled}">
@@ -46,14 +46,14 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="8,8,8,16"> OPTIONS</TextBlock>
-                            <TextBox Grid.Column="0" Grid.Row="1" materialDesign:HintAssist.Hint="Setting 1" Text="200" />
-                            <TextBox Grid.Column="0" Grid.Row="2" materialDesign:HintAssist.Hint="Setting 2" Text="400" />
-                            <TextBox Grid.Column="0" Grid.Row="3" materialDesign:HintAssist.Hint="Setting 3" Text="600" />
-                            <CheckBox Grid.Column="1"  Grid.Row="1" VerticalAlignment="Bottom" />
-                            <CheckBox Grid.Column="1"  Grid.Row="2" IsChecked="True" VerticalAlignment="Bottom" />
-                            <CheckBox Grid.Column="1" Grid.Row="3"  VerticalAlignment="Bottom" />
-                            <ComboBox Grid.Column="0" Grid.Row="4" materialDesign:HintAssist.Hint="Type of product" materialDesign:HintAssist.IsFloating="True" MaxDropDownHeight="200" Margin="8 8 8 8">
+                            <TextBlock Grid.Column="0" Grid.Row="0" Margin="8,8,8,16"> OPTIONS</TextBlock>
+                            <TextBox x:Name="AuthorFilterTextBlock" Grid.Column="0" Grid.Row="1" materialDesign:HintAssist.Hint="Tác giả" Text="" />
+                            <TextBox x:Name="DeliverFilterTextBlock" Grid.Column="0" Grid.Row="2" materialDesign:HintAssist.Hint="Nhà xuất bản/cung cấp" Text="" />
+                            <TextBox x:Name="CatalogriesFliterTextBlock" Grid.Column="0" Grid.Row="3" materialDesign:HintAssist.Hint="Thể loại" Text="" />
+                            <CheckBox x:Name="AuthorFilterCheckBox" Grid.Column="1"  Grid.Row="1" VerticalAlignment="Bottom" />
+                            <CheckBox x:Name="DeliverFilterCheckBox" Grid.Column="1"  Grid.Row="2" IsChecked="True" VerticalAlignment="Bottom" />
+                            <CheckBox x:Name="CatalogriesFilterCheckBox" Grid.Column="1" Grid.Row="3"  VerticalAlignment="Bottom" />
+                            <ComboBox x:Name="TypeFilterComboBox" Grid.Column="0" Grid.Row="4" materialDesign:HintAssist.Hint="Type of product" materialDesign:HintAssist.IsFloating="True" MaxDropDownHeight="200" Margin="8 8 8 8">
                                 <ComboBoxItem>
                                     All Types
                                 </ComboBoxItem>
@@ -65,21 +65,21 @@
                                 </ComboBoxItem>
                             </ComboBox>
                             <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Button Content="_OK" Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}" />
+                                <Button x:Name="FilterOKButton" Click="FilterOKButton_Click" Content="_OK" Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}" />
                                 <Button Content="_Cancel" Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}"/>
                             </StackPanel>
                         </Grid>
                     </materialDesign:PopupBox>
                 </StackPanel>
                 <!--end fillter-->
-                
-                <Button Margin="0 0 30 0" DockPanel.Dock="Right" Style="{DynamicResource MaterialDesignToolButton}" >
+
+                <Button x:Name="SearchButton" Click="SearchButton_Click" Margin="0 0 30 0" DockPanel.Dock="Right" Style="{DynamicResource MaterialDesignToolButton}" >
                     <materialDesign:PackIcon Kind="Magnify" Opacity=".56"/>
                 </Button>
-                
-                <TextBox DockPanel.Dock="Left" Margin="8 0 0 0" materialDesign:HintAssist.Hint="Search" Padding="2 0 0 0" FontSize="15" Height="30" Background="White"
-             BorderThickness="0"  VerticalAlignment="Center"/>
-                
+
+                <TextBox x:Name="searchTextBlock" DockPanel.Dock="Left" Margin="8 0 0 0" materialDesign:HintAssist.Hint="Search" Padding="2 0 0 0" FontSize="15" Height="30" Background="White"
+             BorderThickness="0"  VerticalAlignment="Center" />
+
             </DockPanel>
             <ListView GridViewColumnHeader.Click="Customer_ListView_Click"  Name="Customer_ListView" Margin="0 10 0 0" HorizontalAlignment="Stretch" MinHeight="380" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ContextMenu>
@@ -90,39 +90,44 @@
                 </ListView.ContextMenu>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding ID}"/>
-                        <GridViewColumn Header="ProductName" Width="150" DisplayMemberBinding="{Binding ProductName}"/>
-                        <GridViewColumn Header="Prince" Width="100" DisplayMemberBinding="{Binding Prince}"/>
+                        <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding ID}"/> 
+                        <GridViewColumn Header="Type" Width="60" DisplayMemberBinding="{Binding Type}"/>
+                        <GridViewColumn Header="ProductName" Width="150" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Catalogries" Width="100" DisplayMemberBinding="{Binding Catalogries}"/>
+                        <GridViewColumn Header="Author" Width="130" DisplayMemberBinding="{Binding Author}"/>
+                        <GridViewColumn Header="Deliver" Width="80" DisplayMemberBinding="{Binding Deliver}"/>
+                        <GridViewColumn Header="Prince" Width="80" DisplayMemberBinding="{Binding Price}"/>
                         <GridViewColumn Header="Amount" Width="80" DisplayMemberBinding="{Binding Amount}"/>
+                        
                     </GridView>
                 </ListView.View>
             </ListView>
-           
+
         </DockPanel>
         <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1"></Border>
 
         <DockPanel LastChildFill="True" Margin="10" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TextBlock DockPanel.Dock="Top" Text="BILL" FontSize="20" HorizontalAlignment="Center"/>
             <DockPanel DockPanel.Dock="Top" LastChildFill="False" HorizontalAlignment="Stretch">
-                <TextBlock Text="Bill ID: bill001" FontSize="14" Margin="5 0 0 0"/>
-                <TextBlock Text="Date:12/12/2019" FontSize="14" Margin="0 0 5 0" DockPanel.Dock="Right"/>
+                <TextBlock x:Name="BillIDTextBlock" Text="Bill ID: bill001" FontSize="14" Margin="5 0 0 0"/>
+                <TextBlock x:Name="DateTextBlock" Text="Date:12/12/2019" FontSize="14" Margin="0 0 5 0" DockPanel.Dock="Right"/>
             </DockPanel>
 
             <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">
-                <Button Name="clearBill_Button" Content="Clear Bill" Margin="0 0 50 0" Width="100" Height="30"/>
-                <Button Name="Checkout_Button" DockPanel.Dock="Right" Content="Checkout" Margin="50 0 0 0" Width="100" Height="30"/>
+                <Button Click="clearBill_Button_Click" Name="clearBill_Button" Content="Clear Bill" Margin="0 0 50 0" Width="100" Height="30"/>
+                <Button Click="Checkout_Button_Click" Name="Checkout_Button" DockPanel.Dock="Right" Content="Checkout" Margin="50 0 0 0" Width="100" Height="30"/>
             </StackPanel>
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock VerticalAlignment="Center" Text="Total : " FontSize="14"/>
-                <TextBlock Text="165.000 VND" MinWidth="100" FontSize="14" Margin="0 0 10 0"/>
+                <TextBlock x:Name="TotalCostTextBlock" Text="165.000 VND" MinWidth="100" FontSize="14" Margin="0 0 10 0"/>
             </StackPanel>
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock Text="Tax : " VerticalAlignment="Center" FontSize="14"/>
-                <TextBox Text="10%" MinWidth="100" Height="25" FontSize="14" Margin="0 0 10 0"/>
+                <TextBlock Text="Tax (%): " VerticalAlignment="Center" FontSize="14"/>
+                <TextBox x:Name="TaxTextBlock" Text="10" MinWidth="100" Height="25" FontSize="14" Margin="0 0 10 0"/>
             </StackPanel>
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock VerticalAlignment="Center" Text="Total : " FontSize="14"/>
-                <TextBlock Text="150.000 VND" MinWidth="100" FontSize="14" Margin="0 0 10 0"/>
+                <TextBlock x:Name="SubCostTextBlock" Text="150.000 VND" MinWidth="100" FontSize="14" Margin="0 0 10 0"/>
             </StackPanel>
 
             <Border DockPanel.Dock="Bottom" BorderBrush="Black" BorderThickness="0.3"/>
@@ -135,14 +140,13 @@
                 </ListView.ContextMenu>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="ProductName" Width="150" DisplayMemberBinding="{Binding ProductName}"/>
-                        <GridViewColumn Header="Units Price" Width="120" DisplayMemberBinding="{Binding UnistPrince}"/>
-                        <GridViewColumn Header="Units" Width="70" DisplayMemberBinding="{Binding Units}"/>
+                        <GridViewColumn Header="ProductName" Width="150" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Units Price" Width="120" DisplayMemberBinding="{Binding Price}"/>
+                        <GridViewColumn Header="Units" Width="70" DisplayMemberBinding="{Binding Unit}"/>
                         <GridViewColumn Header="Cost" Width="150" DisplayMemberBinding="{Binding Cost}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
         </DockPanel>
-        
     </Grid>
 </UserControl>

@@ -7,23 +7,22 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-
     <DockPanel LastChildFill="True" Margin="10"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
         <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-            <Button Name="AddProduct_Button" Content="Add Product" Margin="5 0 5 0" Width="120" Height="30"/>
-            <Button Name="UpdateProduct_Button" Content="Update" Margin="5 0 5 0" Width="120" Height="30"/>
-            <Button Name="Delete_Button" Content="Delete" Margin="5 0 5 0" Width="120" Height="30"/>
-           
-            <Button DockPanel.Dock="Right" Style="{DynamicResource MaterialDesignToolButton}" >
+            <Button Name="AddProduct_Button" Click="AddProduct_Button_Click" Content="Add Product" Margin="5 0 5 0" Width="120" Height="30"/>
+            <Button Name="UpdateProduct_Button" Click="UpdateProduct_Button_Click" Content="Update" Margin="5 0 5 0" Width="120" Height="30"/>
+            <Button Name="Delete_Button" Click="Delete_Button_Click" Content="Delete" Margin="5 0 5 0" Width="120" Height="30"/>
+
+            <Button x:Name="SearchButton" Click="SearchButton_Click" DockPanel.Dock="Right" Style="{DynamicResource MaterialDesignToolButton}" >
                 <materialDesign:PackIcon Kind="Magnify" Opacity=".56"/>
             </Button>
-            <TextBox DockPanel.Dock="Right" Margin="8 0 0 0" materialDesign:HintAssist.Hint="Search" Padding="2 0 0 0" FontSize="15" Height="30" Background="White"
+            <TextBox x:Name="SearchTextBox" DockPanel.Dock="Right" Margin="8 0 0 0" materialDesign:HintAssist.Hint="Search" Padding="2 0 0 0" FontSize="15" Height="30" Background="White"
              BorderThickness="0"
             Width="250" VerticalAlignment="Center"/>
 
             <!--fillter-->
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                <CheckBox Name="PopupEnabled" IsChecked="False" FontSize="15">
+                <CheckBox Unchecked="PopupEnabled_Unchecked" Name="PopupEnabled" IsChecked="False" FontSize="15">
                     Filter
                 </CheckBox>
                 <materialDesign:PopupBox StaysOpen="True" IsEnabled="{Binding IsChecked, ElementName=PopupEnabled}">
@@ -49,14 +48,14 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource MaterialDesignTitleTextBlock}" Margin="8,8,8,16"> OPTIONS</TextBlock>
-                        <TextBox Grid.Column="0" Grid.Row="1" materialDesign:HintAssist.Hint="Setting 1" Text="200" />
-                        <TextBox Grid.Column="0" Grid.Row="2" materialDesign:HintAssist.Hint="Setting 2" Text="400" />
-                        <TextBox Grid.Column="0" Grid.Row="3" materialDesign:HintAssist.Hint="Setting 3" Text="600" />
-                        <CheckBox Grid.Column="1"  Grid.Row="1" VerticalAlignment="Bottom" />
-                        <CheckBox Grid.Column="1"  Grid.Row="2" IsChecked="True" VerticalAlignment="Bottom" />
-                        <CheckBox Grid.Column="1" Grid.Row="3"  VerticalAlignment="Bottom" />
-                        <ComboBox Grid.Column="0" Grid.Row="4" materialDesign:HintAssist.Hint="Type of product" materialDesign:HintAssist.IsFloating="True" MaxDropDownHeight="200" Margin="8 8 8 8">
+                        <TextBlock Grid.Column="0" Grid.Row="0"  Margin="8,8,8,16"> OPTIONS</TextBlock>
+                        <TextBox x:Name="AuthorTextBoxFilter"  Grid.Column="0" Grid.Row="1" materialDesign:HintAssist.Hint="Tác giả" Text="200" />
+                        <TextBox x:Name="DeliverTextBoxFilter" Grid.Column="0" Grid.Row="2" materialDesign:HintAssist.Hint="Nhà xuất bản/cung cấp" Text="400" />
+                        <TextBox x:Name="CataloriesTextBoxFilter" Grid.Column="0" Grid.Row="3" materialDesign:HintAssist.Hint="Loại" Text="600" />
+                        <CheckBox x:Name="AuthorCheckboxFilter" Grid.Column="1"  Grid.Row="1" VerticalAlignment="Bottom" />
+                        <CheckBox x:Name="DeliverCheckboxFilter" Grid.Column="1"  Grid.Row="2" VerticalAlignment="Bottom" />
+                        <CheckBox x:Name="CataloriesCheckboxFilter" Grid.Column="1" Grid.Row="3"  VerticalAlignment="Bottom" />
+                        <ComboBox x:Name="ComboboxFilter" Grid.Column="0" Grid.Row="4" materialDesign:HintAssist.Hint="Type of product" materialDesign:HintAssist.IsFloating="True" MaxDropDownHeight="200" Margin="8 8 8 8">
                             <ComboBoxItem>
                                 All Types
                             </ComboBoxItem>
@@ -68,7 +67,7 @@
                             </ComboBoxItem>
                         </ComboBox>
                         <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button Content="_OK" Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}" />
+                            <Button Click="FilterOkButton_Click" x:Name="FilterOkButton" Content="_OK" Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}" />
                             <Button Content="_Cancel" Command="{x:Static materialDesign:PopupBox.ClosePopupCommand}"/>
                         </StackPanel>
                     </Grid>
@@ -80,17 +79,20 @@
         <ListView Name="Customer_ListView" Margin="0 10 0 0" HorizontalAlignment="Stretch" MinHeight="380" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Edit"/>
-                    <MenuItem Header="Delete"/>
+                    <MenuItem x:Name="EditMenuItem" Click="EditMenuItem_Click" Header="Edit"/>
+                    <MenuItem x:Name="DeleteMenuItem" Click="DeleteMenuItem_Click" Header="Delete"/>
                 </ContextMenu>
             </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding ID}"/>
-                    <GridViewColumn Header="ProductName" Width="200" DisplayMemberBinding="{Binding ProductName}"/>
-                    <GridViewColumn Header="Prince" Width="100" DisplayMemberBinding="{Binding Prince}"/>
+                    <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding ID}"/>
+                    <GridViewColumn Header="Type" Width="60" DisplayMemberBinding="{Binding Type}"/>
+                    <GridViewColumn Header="ProductName" Width="180" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Catalogries" Width="150" DisplayMemberBinding="{Binding Catalogries}"/>
+                    <GridViewColumn Header="Author" Width="160" DisplayMemberBinding="{Binding Author}"/>
+                    <GridViewColumn Header="Deliver" Width="180" DisplayMemberBinding="{Binding Deliver}"/>
+                    <GridViewColumn Header="Prince" Width="80" DisplayMemberBinding="{Binding Price}"/>
                     <GridViewColumn Header="Amount" Width="80" DisplayMemberBinding="{Binding Amount}"/>
-                    <GridViewColumn Header="Input Date" Width="120" DisplayMemberBinding="{Binding Input_Date}"/>
                 </GridView>
             </ListView.View>
         </ListView>
