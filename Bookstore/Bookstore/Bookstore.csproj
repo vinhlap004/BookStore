@@ -81,6 +81,9 @@
     <Compile Include="Account.cs">
       <DependentUpon>Bookstore.tt</DependentUpon>
     </Compile>
+    <Compile Include="Bill.cs">
+      <DependentUpon>Bookstore.tt</DependentUpon>
+    </Compile>
     <Compile Include="Bookstore.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -107,6 +110,12 @@
     </Compile>
     <Compile Include="Dialog\EditAccount.xaml.cs">
       <DependentUpon>EditAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>Bookstore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionHistory.cs">
+      <DependentUpon>Bookstore.tt</DependentUpon>
     </Compile>
     <Compile Include="TypeAccount.cs">
       <DependentUpon>Bookstore.tt</DependentUpon>
