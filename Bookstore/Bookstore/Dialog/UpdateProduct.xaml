@@ -12,32 +12,37 @@
     <StackPanel>
         <StackPanel Orientation="Horizontal" Margin="10">
             <TextBlock Text="Name" VerticalAlignment="Center" Margin="0 0 40 0"/>
-            <TextBox x:Name="ProductName" Width="250"/>
+            <TextBox x:Name="ProductName" Width="270"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="15">
-            <TextBlock Text="Author" VerticalAlignment="Center" Margin="0 0 34 0"/>
-            <TextBox x:Name="Author" Width="250"/>
+            <TextBlock Text="Author" VerticalAlignment="Center" Margin="0 0 30 0"/>
+            <TextBox x:Name="Author" Width="270"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10">
-            <TextBlock Text="Price" VerticalAlignment="Center" Margin="0 0 50 0"/>
-            <TextBox x:Name="Price" Width="250"/>
+            <TextBlock Text="Sale Price" VerticalAlignment="Center" Margin="0 0 20 0"/>
+            <TextBox x:Name="Price" Width="270"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10">
-            <TextBlock Text="Catalogries" VerticalAlignment="Center" Margin="0 0 20 0"/>
-            <TextBox x:Name="Catalogries" Width="250"/>
+            <TextBlock Text="Basis Price" VerticalAlignment="Center" Margin="0 0 15 0"/>
+            <TextBox x:Name="BasisPrice" Width="270"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10">
-            <TextBlock Text="Amount" VerticalAlignment="Center" Margin="0 0 35 0"/>
-            <TextBox x:Name="Amount" Width="250"/>
+            <TextBlock Text="Catalogries" VerticalAlignment="Center" Margin="0 0 10 0"/>
+            <TextBox x:Name="Catalogries" Width="270"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10">
-            <TextBlock Text="Deliver" VerticalAlignment="Center" Margin="0 0 40 0"/>
-            <TextBox x:Name="Deliver" Width="250"/>
+            <TextBlock Text="Amount" VerticalAlignment="Center" Margin="0 0 25 0"/>
+            <TextBox x:Name="Amount" Width="270"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Deliver" VerticalAlignment="Center" Margin="0 0 32 0"/>
+            <TextBox x:Name="Deliver" Width="270"/>
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">

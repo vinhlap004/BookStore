@@ -46,20 +46,23 @@ namespace Bookstore.BUS
             return DataAccess.getMaxProductID() + 1;
         }
 
-        public static void addProduct(int id, string type, string name, int price, int amount, string author, string deliver, string catalogries)
+        public static void addProduct(int id, string type, string name, int price, int basisPrice, int amount, string author, string deliver, string catalogries)
         {
-            Product newProduct = new Product() { ID = id, Amount = amount, Author = author, Catalogries = catalogries, Deliver = deliver, Name = name, Price = price, Type = type };
+            Product newProduct = new Product() { ID = id, Amount = amount, Author = author, Catalogries = catalogries, Deliver = deliver, Name = name, Price = price, BasisPrice = basisPrice, Type = type };
 
             DataAccess.addProduct(newProduct);
         }
 
-        public static void updateProduct(int id, string name, int price, int amount, string author, string deliver, string catalogries)
+        public static void updateProduct(int id, string name, int price, int basisPrice,  int amount, string author, string deliver, string catalogries)
         {
             Product productChange = DataAccess.findProductByID(id);
 
             productChange.Name = name != "" ? name : productChange.Name;
 
+
             productChange.Price = price != -1 ? price : productChange.Price;
+
+            productChange.BasisPrice = basisPrice != -1 ? basisPrice : productChange.BasisPrice;
 
             productChange.Amount = amount != -1 ? amount : productChange.Amount;
 

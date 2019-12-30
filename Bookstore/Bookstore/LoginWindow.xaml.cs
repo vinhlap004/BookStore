@@ -30,16 +30,93 @@ namespace Bookstore
         // login: Username: admin password: Ad@123
         private void Login_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (login.checkLogin(UserName_TextBox.Text,Password_Box.Password))
+            if (UserName_TextBox.Text == "")
             {
-                DialogResult = true;
-                usernameLogin = UserName_TextBox.Text;
-                Close();
+                MessageBox.Show("Please input username");
             }
             else
             {
-                MessageBox.Show("Your username or password not correct!!");
-            } 
+                if (Password_Box.Password == "")
+                {
+                    MessageBox.Show("Please input password");
+                }
+                else
+                {
+                    if (login.checkLogin(UserName_TextBox.Text, Password_Box.Password))
+                    {
+                        DialogResult = true;
+                        usernameLogin = UserName_TextBox.Text;
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Your username or password not correct!!");
+                    }
+                }
+            }
+            
+        }
+
+        private void UserName_TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                if (UserName_TextBox.Text == "")
+                {
+                    MessageBox.Show("Please input username");
+                }
+                else
+                {
+                    if (Password_Box.Password == "")
+                    {
+                        MessageBox.Show("Please input password");
+                    }
+                    else
+                    {
+                        if (login.checkLogin(UserName_TextBox.Text, Password_Box.Password))
+                        {
+                            DialogResult = true;
+                            usernameLogin = UserName_TextBox.Text;
+                            Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Your username or password not correct!!");
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Password_Box_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (UserName_TextBox.Text == "")
+                {
+                    MessageBox.Show("Please input username");
+                }
+                else
+                {
+                    if (Password_Box.Password == "")
+                    {
+                        MessageBox.Show("Please input password");
+                    }
+                    else
+                    {
+                        if (login.checkLogin(UserName_TextBox.Text, Password_Box.Password))
+                        {
+                            DialogResult = true;
+                            usernameLogin = UserName_TextBox.Text;
+                            Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Your username or password not correct!!");
+                        }
+                    }
+                }
+            }
         }
     }
 }

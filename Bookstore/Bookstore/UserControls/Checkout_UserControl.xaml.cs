@@ -40,6 +40,7 @@ namespace Bookstore.UserControls
 
 
             InitializeComponent();
+            Customer_ListView.ItemsSource = databaseSource;
             _taxValue = this.TaxTextBlock.Text;
             BillIDTextBlock.Text = "Bill ID : " + _billID;
             this.DateTextBlock.Text = "Date: " + DateTime.Today.ToShortDateString();
@@ -54,7 +55,7 @@ namespace Bookstore.UserControls
         {
             BillIDTextBlock.Text = "Bill ID : " + _billID;
             this.Bill_ListView.ItemsSource = null;
-            this.Customer_ListView.ItemsSource = null;
+            this.Customer_ListView.ItemsSource = databaseSource;
         }
 
         private void clearCostTextBlock()
@@ -101,10 +102,35 @@ namespace Bookstore.UserControls
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            this.PopupEnabled.IsChecked = false;
+            if (PopupEnabled.IsChecked == false)
+            {
+                listProduct = CheckoutBus.search(databaseSource, this.searchTextBlock.Text);
+                Customer_ListView.ItemsSource = listProduct;
+            }
+            else
+            {
+                List<Product> temp = new List<Product>();
+                
+                listProduct = CheckoutBus.search(databaseSource, this.searchTextBlock.Text);
+                string[] tranformer = { "All Types", "Book", "Stationery" };
+                temp.AddRange(listProduct);
+                var typeFilterSelected = tranformer[this.TypeFilterComboBox.SelectedIndex == -1 ? 0 : this.TypeFilterComboBox.SelectedIndex];
 
-            listProduct = CheckoutBus.search(databaseSource, this.searchTextBlock.Text);
-            this.Customer_ListView.ItemsSource = listProduct;
+                if (typeFilterSelected != "All Types")
+                    temp = CheckoutBus.filterType(temp, typeFilterSelected);
+
+                if (this.AuthorFilterCheckBox.IsChecked == true && this.AuthorFilterTextBlock.Text != "")
+                    temp = CheckoutBus.filterAuthor(temp, this.AuthorFilterTextBlock.Text);
+
+                if (this.DeliverFilterCheckBox.IsChecked == true && this.DeliverFilterTextBlock.Text != "")
+                    temp = CheckoutBus.filterDeliver(temp, this.DeliverFilterTextBlock.Text);
+
+                if (this.CatalogriesFilterCheckBox.IsChecked == true && this.CatalogriesFliterTextBlock.Text != "")
+                    temp = CheckoutBus.filterCatalogries(temp, this.CatalogriesFliterTextBlock.Text);
+
+                this.Customer_ListView.ItemsSource = null;
+                this.Customer_ListView.ItemsSource = temp;
+            }
         }
 
         private void AddProduct_Button_Click(object sender, RoutedEventArgs e)
@@ -208,7 +234,22 @@ namespace Bookstore.UserControls
         private void PopupEnabled_Unchecked(object sender, RoutedEventArgs e)
         {
             this.Customer_ListView.ItemsSource = null;
+            if(listProduct.Count<1)
+            {
+                listProduct = databaseSource;
+            }
             this.Customer_ListView.ItemsSource = listProduct;
+        }
+
+        private void searchTextBlock_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                this.PopupEnabled.IsChecked = false;
+
+                listProduct = CheckoutBus.search(databaseSource, this.searchTextBlock.Text);
+                this.Customer_ListView.ItemsSource = listProduct;
+            }
         }
     }
 }

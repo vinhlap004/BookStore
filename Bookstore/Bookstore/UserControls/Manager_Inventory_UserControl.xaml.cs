@@ -100,11 +100,10 @@ namespace Bookstore.UserControls
                 MessageBox.Show("Bạn phải chọn sản phẩm trước");
             else
             {
-                var editProductScreen = new UpdateProduct((this.Customer_ListView.SelectedItem as Product).ID);
+                var editProductScreen = new UpdateProduct(this.Customer_ListView.SelectedItem as Product);
 
                 if (editProductScreen.ShowDialog() == true)
                 {
-
                     //connectiondb = new Bookstore();
                     _databaseSource = ManagerInventoryBus.getAllProduct();
                     this.Customer_ListView.ItemsSource = null;
@@ -131,7 +130,7 @@ namespace Bookstore.UserControls
 
         private void EditMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var editProductScreen = new UpdateProduct((this.Customer_ListView.SelectedItem as Product).ID);
+            var editProductScreen = new UpdateProduct(this.Customer_ListView.SelectedItem as Product);
 
             if (editProductScreen.ShowDialog() == true)
             {
@@ -150,6 +149,17 @@ namespace Bookstore.UserControls
             _databaseSource = ManagerInventoryBus.getAllProduct();
             this.Customer_ListView.ItemsSource = null;
             this.Customer_ListView.ItemsSource = _databaseSource;
+        }
+
+        private void searchTextBlock_KeyUp(object sender, KeyEventArgs e)
+        {
+            this.Customer_ListView.ItemsSource = null;
+
+            if (this.SearchTextBox.Text == "")
+                Customer_ListView.ItemsSource = _databaseSource;
+
+            _displayProductList = ManagerInventoryBus.search(_databaseSource, this.SearchTextBox.Text);
+            Customer_ListView.ItemsSource = _displayProductList;
         }
     }
 }

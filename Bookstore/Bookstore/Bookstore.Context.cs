@@ -29,7 +29,7 @@ namespace Bookstore
         public virtual DbSet<TypeAccount> TypeAccounts { get; set; }
         public virtual DbSet<UserInfo> UserInfoes { get; set; }
         public virtual DbSet<Bill> Bills { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<TransactionHistory> TransactionHistories { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
     }
 }

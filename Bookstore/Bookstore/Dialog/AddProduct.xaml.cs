@@ -29,23 +29,23 @@ namespace Bookstore.Dialog
 
         private void AddProduct_Button_Click(object sender, RoutedEventArgs e)
         {
-            int price, amount;
+            int price, basisPrice, amount;
             string type, author;
-            if(this.ProductName.Text == "" || this.Author.Text == "" || this.Price.Text == "" || this.Catalogries.Text == "" || this.Amount.Text == "" || this.Deliver.Text == "" || (this.Book_typeProduct.IsChecked == false && this.Stationery_typeProduct.IsChecked == false))
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin");
+            if(this.ProductName.Text == "" || this.Author.Text == "" || this.Price.Text == "" || BasisPrice.Text =="" || this.Catalogries.Text == "" || this.Amount.Text == "" || this.Deliver.Text == "" || (this.Book_typeProduct.IsChecked == false && this.Stationery_typeProduct.IsChecked == false))
+                MessageBox.Show("Please complete all infomation!!");
             else
             {
-                if (int.TryParse(this.Price.Text, out price) && int.TryParse(this.Amount.Text, out amount))
+                if (int.TryParse(this.Price.Text, out price) &&int.TryParse(this.BasisPrice.Text, out basisPrice) && int.TryParse(this.Amount.Text, out amount))
                 {
                     type = this.Book_typeProduct.IsChecked == true ? "Book" : "Stationery";
                     author = type == "Stationery" ? "-" : this.Author.Text;
-                    ManagerInventoryBus.addProduct(_id, type, this.ProductName.Text, price, amount, author, this.Deliver.Text, this.Catalogries.Text);
+                    ManagerInventoryBus.addProduct(_id, type, this.ProductName.Text, price, basisPrice,amount, author, this.Deliver.Text, this.Catalogries.Text);
 
                     DialogResult = true;
                     this.Close();
                 }
                 else
-                    MessageBox.Show("Please type a number for Price and Amount, not a letter ");
+                    MessageBox.Show("Please type a number for Price, BasisPrice and Amount, not a letter ");
             }
             
         }

@@ -37,11 +37,11 @@
                     <TextBlock Text="Login" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 </Grid>
                 <Grid Grid.Row="1">
-                    <TextBox HorizontalAlignment="Stretch" Name="UserName_TextBox" materialDesign:HintAssist.Hint="UserName" materialDesign:HintAssist.Foreground="Blue"
+                    <TextBox KeyDown="UserName_TextBox_KeyDown" HorizontalAlignment="Stretch" Name="UserName_TextBox" materialDesign:HintAssist.Hint="UserName" materialDesign:HintAssist.Foreground="Blue"
                         materialDesign:TextFieldAssist.UnderlineBrush="Blue" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 </Grid>
                 <Grid Grid.Row="2">
-                    <PasswordBox x:Name="Password_Box" materialDesign:HintAssist.Hint="Password" materialDesign:HintAssist.Foreground="Blue"
+                    <PasswordBox KeyDown="Password_Box_KeyDown" x:Name="Password_Box" materialDesign:HintAssist.Hint="Password" materialDesign:HintAssist.Foreground="Blue"
                         materialDesign:TextFieldAssist.UnderlineBrush="Blue" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
                 </Grid>
                 <Grid Grid.Row="3">

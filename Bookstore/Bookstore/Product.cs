@@ -19,6 +19,7 @@ namespace Bookstore
         public string Type { get; set; }
         public string Author { get; set; }
         public int Price { get; set; }
+        public int BasisPrice { get; set; }
         public string Catalogries { get; set; }
         public int Amount { get; set; }
         public string Deliver { get; set; }

@@ -6,22 +6,15 @@
              xmlns:local="clr-namespace:Bookstore.UserControls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1080">
     <DockPanel LastChildFill="True" Margin="10"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+        <DockPanel DockPanel.Dock="Top" LastChildFill="True">
             <Button Name="AddProduct_Button" Click="AddProduct_Button_Click" Content="Add Product" Margin="5 0 5 0" Width="120" Height="30"/>
             <Button Name="UpdateProduct_Button" Click="UpdateProduct_Button_Click" Content="Update" Margin="5 0 5 0" Width="120" Height="30"/>
-            <Button Name="Delete_Button" Click="Delete_Button_Click" Content="Delete" Margin="5 0 5 0" Width="120" Height="30"/>
-
-            <Button x:Name="SearchButton" Click="SearchButton_Click" DockPanel.Dock="Right" Style="{DynamicResource MaterialDesignToolButton}" >
-                <materialDesign:PackIcon Kind="Magnify" Opacity=".56"/>
-            </Button>
-            <TextBox x:Name="SearchTextBox" DockPanel.Dock="Right" Margin="8 0 0 0" materialDesign:HintAssist.Hint="Search" Padding="2 0 0 0" FontSize="15" Height="30" Background="White"
-             BorderThickness="0"
-            Width="250" VerticalAlignment="Center"/>
+            <Button Name="Delete_Button" Click="Delete_Button_Click" Content="Delete" Margin="5 0 50 0" Width="120" Height="30"/>
 
             <!--fillter-->
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Margin="0 0 50 0">
                 <CheckBox Unchecked="PopupEnabled_Unchecked" Name="PopupEnabled" IsChecked="False" FontSize="15">
                     Filter
                 </CheckBox>
@@ -49,9 +42,9 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Column="0" Grid.Row="0"  Margin="8,8,8,16"> OPTIONS</TextBlock>
-                        <TextBox x:Name="AuthorTextBoxFilter"  Grid.Column="0" Grid.Row="1" materialDesign:HintAssist.Hint="Tác giả" Text="200" />
-                        <TextBox x:Name="DeliverTextBoxFilter" Grid.Column="0" Grid.Row="2" materialDesign:HintAssist.Hint="Nhà xuất bản/cung cấp" Text="400" />
-                        <TextBox x:Name="CataloriesTextBoxFilter" Grid.Column="0" Grid.Row="3" materialDesign:HintAssist.Hint="Loại" Text="600" />
+                        <TextBox x:Name="AuthorTextBoxFilter"  Grid.Column="0" Grid.Row="1" materialDesign:HintAssist.Hint="Tác giả" Text="" />
+                        <TextBox x:Name="DeliverTextBoxFilter" Grid.Column="0" Grid.Row="2" materialDesign:HintAssist.Hint="Nhà xuất bản/cung cấp" Text="" />
+                        <TextBox x:Name="CataloriesTextBoxFilter" Grid.Column="0" Grid.Row="3" materialDesign:HintAssist.Hint="Loại" Text="" />
                         <CheckBox x:Name="AuthorCheckboxFilter" Grid.Column="1"  Grid.Row="1" VerticalAlignment="Bottom" />
                         <CheckBox x:Name="DeliverCheckboxFilter" Grid.Column="1"  Grid.Row="2" VerticalAlignment="Bottom" />
                         <CheckBox x:Name="CataloriesCheckboxFilter" Grid.Column="1" Grid.Row="3"  VerticalAlignment="Bottom" />
@@ -74,7 +67,13 @@
                 </materialDesign:PopupBox>
             </StackPanel>
             <!--end fillter-->
-
+            <Button x:Name="SearchButton" Click="SearchButton_Click" DockPanel.Dock="Right" Style="{DynamicResource MaterialDesignToolButton}" >
+                <materialDesign:PackIcon Kind="Magnify" Opacity=".56"/>
+            </Button>
+            <TextBox x:Name="SearchTextBox" KeyUp="searchTextBlock_KeyUp" DockPanel.Dock="Right" Margin="8 0 0 0" materialDesign:HintAssist.Hint="Search" Padding="2 0 0 0" FontSize="15" Height="30" Background="White"
+             BorderThickness="0"
+             VerticalAlignment="Center"/>
+            
         </DockPanel>
         <ListView Name="Customer_ListView" Margin="0 10 0 0" HorizontalAlignment="Stretch" MinHeight="380" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ContextMenu>
@@ -91,7 +90,8 @@
                     <GridViewColumn Header="Catalogries" Width="150" DisplayMemberBinding="{Binding Catalogries}"/>
                     <GridViewColumn Header="Author" Width="160" DisplayMemberBinding="{Binding Author}"/>
                     <GridViewColumn Header="Deliver" Width="180" DisplayMemberBinding="{Binding Deliver}"/>
-                    <GridViewColumn Header="Prince" Width="80" DisplayMemberBinding="{Binding Price}"/>
+                    <GridViewColumn Header="Prince" Width="105" DisplayMemberBinding="{Binding Price}"/>
+                    <GridViewColumn Header="Basis Prince" Width="105" DisplayMemberBinding="{Binding BasisPrice}"/>
                     <GridViewColumn Header="Amount" Width="80" DisplayMemberBinding="{Binding Amount}"/>
                 </GridView>
             </ListView.View>
