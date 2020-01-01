@@ -28,7 +28,7 @@ namespace Bookstore.UserControls
         private List<Product> listProduct = new List<Product>(); // danh sách sản phẩm hiển thị bên khung tìm kiếm
         private int _subCost = 0;
         private double _totalCost = 0;
-        private string _taxValue;
+        private double _taxValue;
         private string _billID;
 
         //_1712872.Bookstore connectiondb; // remember to edit it
@@ -41,7 +41,19 @@ namespace Bookstore.UserControls
 
             InitializeComponent();
             Customer_ListView.ItemsSource = databaseSource;
-            _taxValue = this.TaxTextBlock.Text;
+            try
+            {
+                if (TaxTextBlock.Text.Length != 0)
+                    _taxValue = double.Parse(TaxTextBlock.Text);
+                else
+                {
+                    _taxValue = 0;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please input a number");
+            }
             BillIDTextBlock.Text = "Bill ID : " + _billID;
             this.DateTextBlock.Text = "Date: " + DateTime.Today.ToShortDateString();
         }
@@ -74,11 +86,21 @@ namespace Bookstore.UserControls
         //------------------> Các hàm tính giá tiền của cái bill <-----------------------
         private void updateCostTextBlock(int priceOfProduct)
         {
-            if (this.TaxTextBlock.Text != this._taxValue)
-                this._taxValue = this.TaxTextBlock.Text;
-
+            try
+            {
+                if (TaxTextBlock.Text.Length != 0)
+                    _taxValue = double.Parse(TaxTextBlock.Text);
+                else
+                {
+                    _taxValue = 0;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please input a number");
+            }
             this._subCost = CheckoutBus.updateSubCost(this._subCost, priceOfProduct);
-            this._totalCost += CheckoutBus.updateTotalCost(this._subCost, this._taxValue);
+            this._totalCost = CheckoutBus.updateTotalCost(this._subCost, this._taxValue);
 
             this.SubCostTextBlock.Text = this._subCost.ToString();
             this.TotalCostTextBlock.Text = this._totalCost.ToString();
@@ -178,6 +200,8 @@ namespace Bookstore.UserControls
 
         private void clearBill_Button_Click(object sender, RoutedEventArgs e)
         {
+            _subCost = 0;
+            _totalCost = 0;
             resetUI();
             clearBindingList();
             clearCostTextBlock();
@@ -199,6 +223,7 @@ namespace Bookstore.UserControls
             resetUI();
             clearBindingList();
             clearCostTextBlock();
+            Customer_ListView.ItemsSource = CheckoutBus.getAllProduct();
 
         }
 
@@ -250,6 +275,25 @@ namespace Bookstore.UserControls
                 listProduct = CheckoutBus.search(databaseSource, this.searchTextBlock.Text);
                 this.Customer_ListView.ItemsSource = listProduct;
             }
+        }
+
+        private void TaxTextBlock_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            { 
+                if (TaxTextBlock.Text.Length != 0)
+                    _taxValue = double.Parse(TaxTextBlock.Text);
+                else
+                {
+                    _taxValue = 0;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please input a number");
+            }
+            this._totalCost = CheckoutBus.updateTotalCost(this._subCost, _taxValue);
+            this.TotalCostTextBlock.Text = this._totalCost.ToString();
         }
     }
 }

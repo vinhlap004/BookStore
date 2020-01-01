@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <DockPanel LastChildFill="True">
-        <WrapPanel Name="Menu_Button_WrapPanel" Width="520" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <WrapPanel  Name="Menu_Button_WrapPanel" Width="520" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
         </WrapPanel>
     </DockPanel>
 </UserControl>

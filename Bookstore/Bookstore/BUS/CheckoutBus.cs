@@ -20,9 +20,13 @@ namespace Bookstore.BUS
             return currentSubCost + productPrice;
         }
 
-        static public double updateTotalCost(int currentSubCost, string tax)
+        static public double updateTotalCost(int currentSubCost, double tax)
         {
-            return currentSubCost + currentSubCost * double.Parse(tax) / 100;
+            if (tax == 0)
+            {
+                return currentSubCost;
+            }
+                return currentSubCost + currentSubCost * tax / 100;
         }
 
         static public List<Product> filterType(List<Product> inputList, string filterContains)

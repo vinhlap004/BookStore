@@ -4,9 +4,62 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Bookstore.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1080">
-    <Grid>
-            
-    </Grid>
+
+    <DockPanel LastChildFill="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <StackPanel Margin="10 10 0 0" HorizontalAlignment="Left" DockPanel.Dock="Top">
+            <materialDesign:ColorZone  Width="350" Mode="PrimaryMid">
+                <StackPanel Orientation="Horizontal" Margin="2">
+                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="True" Content="Date" />
+                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="Month" />
+                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="Year" />
+                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="Total" />
+                </StackPanel>
+            </materialDesign:ColorZone>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Orientation="Horizontal">
+
+            <materialDesign:Card Margin="10" Background="#6725D3" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"    Width="200" Padding="8" UniformCornerRadius="6">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> Amount Sold </TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> 100 </TextBlock>
+                </StackPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Margin="10" Background="#6725D3" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"    Width="200" Padding="8" UniformCornerRadius="6">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> Revenue </TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> 100,000,000</TextBlock>
+                </StackPanel>
+            </materialDesign:Card>
+
+            <materialDesign:Card Margin="10" Background="#6725D3" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"    Width="200" Padding="8" UniformCornerRadius="6">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> Profit </TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> 20,000,000</TextBlock>
+                </StackPanel>
+            </materialDesign:Card>
+
+        </StackPanel>
+
+        <ListView Name="Customer_ListView" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding ID}"/>
+                    <GridViewColumn Header="Type" Width="60" DisplayMemberBinding="{Binding Type}"/>
+                    <GridViewColumn Header="ProductName" Width="180" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Amount" Width="80" DisplayMemberBinding="{Binding Amount}"/>
+                    <GridViewColumn Header="Prince" Width="105" DisplayMemberBinding="{Binding Price}"/>
+                    <GridViewColumn Header="Basis Prince" Width="105" DisplayMemberBinding="{Binding BasisPrice}"/>
+                    <GridViewColumn Header="Amount Sold" Width="110" DisplayMemberBinding="{Binding AmountSold}"/>
+                    <GridViewColumn Header="Revenue" Width="105" DisplayMemberBinding="{Binding Revenue}"/>
+                    <GridViewColumn Header="Profit" Width="105" DisplayMemberBinding="{Binding Profit}"/>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </DockPanel>
 </UserControl>
