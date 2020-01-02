@@ -33,7 +33,7 @@ namespace Bookstore.UserControls
         
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            ManagerAccount_ListView.ItemsSource = managerAccount.Show();
+            ManagerAccount_ListView.ItemsSource = managerAccount.Show(); 
         }
 
         private void Add_Account_Click(object sender, RoutedEventArgs e)
@@ -98,5 +98,21 @@ namespace Bookstore.UserControls
                 MessageBox.Show("Delete success");
             }
         }
+
+        private void SearchAccount_Keyup(object sender, KeyEventArgs e)
+        {
+            string keyword = SearchTextBox.Text;
+            ManagerAccount_ListView.ItemsSource = null;
+            var database = managerAccount.Show();
+            if (keyword == "")
+            {
+                ManagerAccount_ListView.ItemsSource = database;
+                return;
+            }
+
+            var resultAccounts = managerAccount.search(database, keyword);
+            ManagerAccount_ListView.ItemsSource = resultAccounts;
+        }
+
     }
 }

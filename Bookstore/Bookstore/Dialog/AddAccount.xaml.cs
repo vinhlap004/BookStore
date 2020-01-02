@@ -31,6 +31,16 @@ namespace Bookstore.Dialog
 
         private void AddAccount_Button_Click(object sender, RoutedEventArgs e)
         {
+            //check input empty
+            string[] input = { UserName.Text, PasswordBox.Password, Name.Text, PhoneNumber.Text };
+
+            string error = managerAccount.checkInput(input);
+            if (error != "")
+            {
+                MessageBox.Show(error);
+                return;
+            }
+
             int typeAccount;  
             if(admin_typeAccount.IsChecked== true)
             {
@@ -40,6 +50,9 @@ namespace Bookstore.Dialog
             {
                 typeAccount = 2;
             }
+
+            
+
             var newAccount = new Account
             {
                 Username = UserName.Text,

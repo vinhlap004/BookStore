@@ -67,7 +67,7 @@
                 </materialDesign:PopupBox>
             </StackPanel>
             <!--end fillter-->
-            <Button x:Name="SearchButton" Click="SearchButton_Click" DockPanel.Dock="Right" Style="{DynamicResource MaterialDesignToolButton}" >
+            <Button x:Name="SearchButton" DockPanel.Dock="Right" Style="{DynamicResource MaterialDesignToolButton}" >
                 <materialDesign:PackIcon Kind="Magnify" Opacity=".56"/>
             </Button>
             <TextBox x:Name="SearchTextBox" KeyUp="searchTextBlock_KeyUp" DockPanel.Dock="Right" Margin="8 0 0 0" materialDesign:HintAssist.Hint="Search" Padding="2 0 0 0" FontSize="15" Height="30" Background="White"

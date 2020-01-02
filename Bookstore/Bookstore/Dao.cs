@@ -22,6 +22,8 @@ namespace Bookstore
         void updateUserInfo(UserInfo newuserInfo);
         void deleteAccountByID(int ID);
 
+     
+
         void refreshDB();
 
         // Product + Checkout
@@ -63,6 +65,7 @@ namespace Bookstore
                 return false;
             }
         }
+
 
 
 
@@ -125,6 +128,18 @@ namespace Bookstore
         {
             return DB.Accounts.SingleOrDefault(id => id.ID == ID);
         }
+
+        //public List<Account> findAccountByUserName(string username)
+        //{
+        //    var accountList = DB.Accounts.ToList();
+        //    string usernameRegex = @"[\\w]*" + username + "[\\w]*";
+            
+        //    var a = (from b in accountList
+        //             where (b.Username == username)
+        //             select b);
+            
+        //    return a;
+        //}
 
         public UserInfo findUserInfoByID(int ID)
         {
