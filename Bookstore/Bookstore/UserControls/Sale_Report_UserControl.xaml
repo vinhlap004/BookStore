@@ -56,7 +56,6 @@
                     <GridViewColumn Header="Amount Sold" Width="110" DisplayMemberBinding="{Binding AmountSold}"/>
                     <GridViewColumn Header="Revenue" Width="105" DisplayMemberBinding="{Binding Revenue}"/>
                     <GridViewColumn Header="Profit" Width="105" DisplayMemberBinding="{Binding Profit}"/>
-
                 </GridView>
             </ListView.View>
         </ListView>
