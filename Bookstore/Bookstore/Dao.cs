@@ -34,11 +34,15 @@ namespace Bookstore
         int getMaxProductID();
         // Bill 
 
+        List<Bill> getAllBill();
+
         int getMaxBillID();
 
         void addBill(Bill bill);
 
         //TransactionHistory
+
+        List<TransactionHistory> getAllTransactionHistories();
         int getMaxTransactionHistorySTT();
         void addTransactionHistory(TransactionHistory input);
     };
@@ -240,6 +244,16 @@ namespace Bookstore
         public int getMaxProductID()
         {
             return DB.Products.Max(product => product.ID);
+        }
+
+        public List<Bill> getAllBill()
+        {
+            return DB.Bills.ToList();
+        }
+
+        public List<TransactionHistory> getAllTransactionHistories()
+        {
+            return DB.TransactionHistories.ToList();
         }
     }
 }

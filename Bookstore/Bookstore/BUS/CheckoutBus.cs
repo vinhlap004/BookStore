@@ -66,7 +66,7 @@ namespace Bookstore.BUS
             int tradeID = DataAccess.getMaxTransactionHistorySTT() + 1;
             foreach(var item in productOnBill)
             {
-                TransactionHistory trade = new TransactionHistory() { BillID = int.Parse(billID), ProductID = item.ID, ProductPrice = item.Price, Unit = item.Unit, STT = tradeID };
+                TransactionHistory trade = new TransactionHistory() { BillID = int.Parse(billID), ProductID = item.ID, ProductBasisPrice=item.BasisPrice, ProductPrice = item.Price, Unit = item.Unit, STT = tradeID };
                 DataAccess.addTransactionHistory(trade);
 
                 tradeID += 1;

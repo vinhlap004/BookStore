@@ -17,6 +17,7 @@ namespace Bookstore
         public int STT { get; set; }
         public int BillID { get; set; }
         public int ProductID { get; set; }
+        public int ProductBasisPrice { get; set; }
         public int ProductPrice { get; set; }
         public int Unit { get; set; }
     }

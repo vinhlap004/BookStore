@@ -43,6 +43,7 @@
           <Property Name="STT" Type="int" Nullable="false" />
           <Property Name="BillID" Type="int" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ProductBasisPrice" Type="int" Nullable="false" />
           <Property Name="ProductPrice" Type="int" Nullable="false" />
           <Property Name="Unit" Type="int" Nullable="false" />
         </EntityType>
@@ -187,8 +188,8 @@
             <End Role="UserInfo" EntitySet="UserInfoes" />
           </AssociationSet>
           <EntitySet Name="Bills" EntityType="BookstoreModel.Bill" />
-          <EntitySet Name="TransactionHistories" EntityType="BookstoreModel.TransactionHistory" />
           <EntitySet Name="Products" EntityType="BookstoreModel.Product" />
+          <EntitySet Name="TransactionHistories" EntityType="BookstoreModel.TransactionHistory" />
         </EntityContainer>
         <EntityType Name="UserInfo">
           <Key>
@@ -223,16 +224,6 @@
           <Property Name="DateCreated" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TotalCost" Type="Double" Nullable="false" />
         </EntityType>
-        <EntityType Name="TransactionHistory">
-          <Key>
-            <PropertyRef Name="STT" />
-          </Key>
-          <Property Name="STT" Type="Int32" Nullable="false" />
-          <Property Name="BillID" Type="Int32" Nullable="false" />
-          <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <Property Name="ProductPrice" Type="Int32" Nullable="false" />
-          <Property Name="Unit" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ID" />
@@ -246,6 +237,17 @@
           <Property Name="Catalogries" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Amount" Type="Int32" Nullable="false" />
           <Property Name="Deliver" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TransactionHistory">
+          <Key>
+            <PropertyRef Name="STT" />
+          </Key>
+          <Property Name="STT" Type="Int32" Nullable="false" />
+          <Property Name="BillID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ProductBasisPrice" Type="Int32" Nullable="false" />
+          <Property Name="ProductPrice" Type="Int32" Nullable="false" />
+          <Property Name="Unit" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -293,17 +295,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TransactionHistories">
-            <EntityTypeMapping TypeName="BookstoreModel.TransactionHistory">
-              <MappingFragment StoreEntitySet="TransactionHistory">
-                <ScalarProperty Name="Unit" ColumnName="Unit" />
-                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="BillID" ColumnName="BillID" />
-                <ScalarProperty Name="STT" ColumnName="STT" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="BookstoreModel.Product">
               <MappingFragment StoreEntitySet="Product">
@@ -316,6 +307,18 @@
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionHistories">
+            <EntityTypeMapping TypeName="BookstoreModel.TransactionHistory">
+              <MappingFragment StoreEntitySet="TransactionHistory">
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="ProductBasisPrice" ColumnName="ProductBasisPrice" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="BillID" ColumnName="BillID" />
+                <ScalarProperty Name="STT" ColumnName="STT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

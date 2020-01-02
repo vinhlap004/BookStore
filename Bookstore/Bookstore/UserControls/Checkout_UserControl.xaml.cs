@@ -190,7 +190,7 @@ namespace Bookstore.UserControls
                     }
                 }
 
-                productOnBill.Add(new BillInfo() { ID = itemSelected.ID, Name = itemSelected.Name, Price = itemSelected.Price, Unit = 1, Cost = itemSelected.Price });
+                productOnBill.Add(new BillInfo() { ID = itemSelected.ID, Name = itemSelected.Name,BasisPrice = itemSelected.BasisPrice, Price = itemSelected.Price, Unit = 1, Cost = itemSelected.Price });
                 updateCostTextBlock(itemSelected.Price);
 
                 this.Bill_ListView.ItemsSource = null;

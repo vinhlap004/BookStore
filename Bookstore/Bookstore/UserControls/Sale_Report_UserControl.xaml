@@ -12,10 +12,10 @@
         <StackPanel Margin="10 10 0 0" HorizontalAlignment="Left" DockPanel.Dock="Top">
             <materialDesign:ColorZone  Width="350" Mode="PrimaryMid">
                 <StackPanel Orientation="Horizontal" Margin="2">
-                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="True" Content="Date" />
-                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="Month" />
-                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="Year" />
-                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="Total" />
+                    <RadioButton Name="DateMode" Checked="DateMode_Checked" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="Date" />
+                    <RadioButton Name="MonthMode" Checked="MonthMode_Checked" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="Month" />
+                    <RadioButton Name="YearMode" Checked="YearMode_Checked"  Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="Year" />
+                    <RadioButton Name="TotalMode" Checked="TotalMode_Checked" Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="Total" />
                 </StackPanel>
             </materialDesign:ColorZone>
         </StackPanel>
@@ -24,38 +24,44 @@
             <materialDesign:Card Margin="10" Background="#6725D3" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"    Width="200" Padding="8" UniformCornerRadius="6">
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> Amount Sold </TextBlock>
-                    <TextBlock HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> 100 </TextBlock>
+                    <TextBlock Name="AmountSold_TextBlock" HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> 100 </TextBlock>
                 </StackPanel>
             </materialDesign:Card>
 
             <materialDesign:Card Margin="10" Background="#6725D3" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"    Width="200" Padding="8" UniformCornerRadius="6">
                 <StackPanel>
-                    <TextBlock HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> Revenue </TextBlock>
-                    <TextBlock HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> 100,000,000</TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> Revenue with Tax</TextBlock>
+                    <TextBlock Name="RevenueWithTax_TextBlock" HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> 100,000,000</TextBlock>
                 </StackPanel>
             </materialDesign:Card>
 
+            <materialDesign:Card Margin="10" Background="#6725D3" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"    Width="200" Padding="8" UniformCornerRadius="6">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> Revenue without Tax </TextBlock>
+                    <TextBlock Name="RevenueWithoutTax_TextBlock" HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> 100,000,000</TextBlock>
+                </StackPanel>
+            </materialDesign:Card>
+            
             <materialDesign:Card Margin="10" Background="#6725D3" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"    Width="200" Padding="8" UniformCornerRadius="6">
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> Profit </TextBlock>
-                    <TextBlock HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> 20,000,000</TextBlock>
+                    <TextBlock Name="Profit_TextBlock" HorizontalAlignment="Center" FontSize="16" TextWrapping="Wrap"> 20,000,000</TextBlock>
                 </StackPanel>
             </materialDesign:Card>
 
         </StackPanel>
 
-        <ListView Name="Customer_ListView" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView Name="SaleReport_ListView" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding ID}"/>
-                    <GridViewColumn Header="Type" Width="60" DisplayMemberBinding="{Binding Type}"/>
-                    <GridViewColumn Header="ProductName" Width="180" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Amount" Width="80" DisplayMemberBinding="{Binding Amount}"/>
-                    <GridViewColumn Header="Prince" Width="105" DisplayMemberBinding="{Binding Price}"/>
-                    <GridViewColumn Header="Basis Prince" Width="105" DisplayMemberBinding="{Binding BasisPrice}"/>
-                    <GridViewColumn Header="Amount Sold" Width="110" DisplayMemberBinding="{Binding AmountSold}"/>
-                    <GridViewColumn Header="Revenue" Width="105" DisplayMemberBinding="{Binding Revenue}"/>
-                    <GridViewColumn Header="Profit" Width="105" DisplayMemberBinding="{Binding Profit}"/>
+                    <GridViewColumn Header="ID" Width="100" DisplayMemberBinding="{Binding ID}"/>
+                    <GridViewColumn Header="Type" Width="100" DisplayMemberBinding="{Binding Type}"/>
+                    <GridViewColumn Header="ProductName" Width="200" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Basis Prince" Width="150" DisplayMemberBinding="{Binding BasisPrice}"/>
+                    <GridViewColumn Header="Prince" Width="150" DisplayMemberBinding="{Binding Price}"/>
+                    <GridViewColumn Header="Amount Sold" Width="150" DisplayMemberBinding="{Binding AmountSold}"/>
+                    <GridViewColumn Header="Revenue" Width="150" DisplayMemberBinding="{Binding Revenue}"/> 
+                    <GridViewColumn Header="Profit" Width="150" DisplayMemberBinding="{Binding Profit}"/>
                 </GridView>
             </ListView.View>
         </ListView>
