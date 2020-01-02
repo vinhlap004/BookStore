@@ -18,7 +18,7 @@
             </Button>
             <TextBox DockPanel.Dock="Right" Margin="8 0 0 0" materialDesign:HintAssist.Hint="Search" Padding="2 0 0 0" FontSize="15" Height="30" Background="White"
              BorderThickness="0"
-            Width="250" VerticalAlignment="Center"/>
+            Width="250" VerticalAlignment="Center" Name="SearchTextBox" KeyUp="SearchAccount_Keyup"/>
 
         </DockPanel>
         <ListView Name="ManagerAccount_ListView" Margin="0 10 0 0" HorizontalAlignment="Stretch" MinHeight="380" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">

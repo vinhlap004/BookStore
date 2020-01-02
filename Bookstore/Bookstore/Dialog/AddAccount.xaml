@@ -11,22 +11,22 @@
         Title="Add Account" Height="550" Width="400">
     <StackPanel>
         <StackPanel Orientation="Horizontal" Margin="10">
-            <TextBlock Text="UserName" VerticalAlignment="Center" Margin="0 0 10 0"/>
+            <TextBlock Text="UserName*" VerticalAlignment="Center" Margin="0 0 10 0"/>
             <TextBox Name="UserName" Width="300"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="10">
-            <TextBlock Text="Password" VerticalAlignment="Center" Margin="0 0 16 0"/>
+            <TextBlock Text="Password*" VerticalAlignment="Center" Margin="0 0 16 0"/>
             <PasswordBox x:Name="PasswordBox" Width="300"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10">
-            <TextBlock Text="Account Type" VerticalAlignment="Center" Margin="0 0 20 0"/>
+            <TextBlock Text="Account Type*" VerticalAlignment="Center" Margin="0 0 20 0"/>
             <RadioButton GroupName="typeAccount" Name="admin_typeAccount" Content="Admin" Margin="0 0 10 0"/>
-            <RadioButton GroupName="typeAccount" Name="seller_typeAccount" Content="Seller"/>
+            <RadioButton GroupName="typeAccount" Name="seller_typeAccount" Content="Seller" IsChecked="True"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10">
-            <TextBlock Text="Name" VerticalAlignment="Center" Margin="0 0 34 0"/>
+            <TextBlock Text="Name*" VerticalAlignment="Center" Margin="0 0 34 0"/>
             <TextBox x:Name="Name" Width="300"/>
         </StackPanel>
 
@@ -37,13 +37,13 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10">
-            <TextBlock Text="Gender" VerticalAlignment="Center" Margin="0 0 50 0"/>
-            <RadioButton GroupName="Gender" Name="male_Gender" Content="Male" Margin="0 0 10 0"/>
+            <TextBlock Text="Gender*" VerticalAlignment="Center" Margin="0 0 50 0"/>
+            <RadioButton GroupName="Gender" Name="male_Gender" Content="Male" Margin="0 0 10 0" IsChecked="True"/>
             <RadioButton GroupName="Gender" Name="female_Gender" Content="Female"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10">
-            <TextBlock Text="Phone" VerticalAlignment="Center" Margin="0 0 26 0"/>
+            <TextBlock Text="Phone*" VerticalAlignment="Center" Margin="0 0 26 0"/>
             <TextBox x:Name="PhoneNumber" Width="300"/>
         </StackPanel>
 
