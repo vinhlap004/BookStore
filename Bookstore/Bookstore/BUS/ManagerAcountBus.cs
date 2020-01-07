@@ -17,15 +17,16 @@ namespace Bookstore.BUS
         public string Name { get; set; }
         public string Dayofbirth { get; set; }
         public string Gender { get; set; }
-        public string PhoneNuber { get; set; }
+        public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public string MoreInfo{ get; set; }
     }
     class ManagerAcountBus
     {
         private static IDao accountdb = new Dao();
-        public BindingList<BindingAccount> Show()
+        public List<BindingAccount> Show()
         {
+            accountdb = new Dao();
             var account = accountdb.getAllAccount();
             var typeAccount = accountdb.getAllTypeAccount();
             var userInfo = accountdb.getAllUserInfo();
@@ -41,11 +42,11 @@ namespace Bookstore.BUS
                               Name = c.Name,
                               Dayofbirth = c.Dayofbirth,
                               Gender = c.Gender,
-                              PhoneNuber = c.PhoneNumber,
+                              PhoneNumber = c.PhoneNumber,
                               Address = c.Address,
                               MoreInfo = c.MoreInfo,
                           }).ToList();
-            BindingList<BindingAccount> db = new BindingList<BindingAccount>();
+            List<BindingAccount> db = new List<BindingAccount>();
             foreach (var item in showdb)
             {
                 db.Add(item);
@@ -67,7 +68,7 @@ namespace Bookstore.BUS
 
         public bool isValidUsername(string username)
         {
-            string regex = @"[a-zA-Z-0-9]{6,}";
+            string regex = @"[a-zA-Z-0-9]{5,}";
             return Regex.IsMatch(username, regex);
         }
 
@@ -101,7 +102,7 @@ namespace Bookstore.BUS
             string username = input[0];
             if (isValidUsername(username) == false)
             {
-                return "Username only contains number, alphabet and\nmust have at least 6 character";
+                return "Username only contains number, alphabet and\nmust have at least 5 character";
             }
 
             //check pass
@@ -129,7 +130,7 @@ namespace Bookstore.BUS
 
         }
 
-        public BindingList<BindingAccount> search(BindingList<BindingAccount> database, string keyword)
+        public List<BindingAccount> search(List<BindingAccount> database, string keyword)
         {
             var accounts = Show();
 
@@ -149,11 +150,11 @@ namespace Bookstore.BUS
                               Name = c.Name,
                               Dayofbirth = c.Dayofbirth,
                               Gender = c.Gender,
-                              PhoneNuber = c.PhoneNumber,
+                              PhoneNumber = c.PhoneNumber,
                               Address = c.Address,
                               MoreInfo = c.MoreInfo,
                           }).ToList();
-            BindingList<BindingAccount> db = new BindingList<BindingAccount>();
+            List<BindingAccount> db = new List<BindingAccount>();
             foreach (var item in showdb)
             {
                 db.Add(item);

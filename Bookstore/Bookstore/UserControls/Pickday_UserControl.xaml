@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Bookstore.UserControls.Pickday_UserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Bookstore.UserControls"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="44" d:DesignWidth="550">
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+        
+        <DatePicker Name="From" Margin="50 0 0 0" Width="150" materialDesign:HintAssist.Hint="From"
+             Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
+        <DatePicker Name="To" Margin="30 0 0 0" Width="150" materialDesign:HintAssist.Hint="Pick Date"
+             Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
+        <Button Name="Pickday_Button" Click="Pickday_Button_Click" Width="70" Margin="40 0 0 0" Content="OK"/>
+
+    </StackPanel>
+</UserControl>

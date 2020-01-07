@@ -26,10 +26,10 @@ namespace Bookstore.UserControls
         TextBlock menuBar_Tilte;
         public Home_UserControl(List<int> usable_Button_List, DockPanel mainScreen,TextBlock menuBarTilte)
         {
+            InitializeComponent();
             usable_Button = usable_Button_List;
             screen = mainScreen;
             menuBar_Tilte = menuBarTilte;
-            InitializeComponent();
         }
 
         StackPanel stackPnl;
@@ -51,7 +51,7 @@ namespace Bookstore.UserControls
                         stackPnl = new StackPanel();
                         stackPnl.Orientation = Orientation.Vertical;
                         img = new Image();
-                        img.Source = new BitmapImage(new Uri("/Images/warehouse.png", UriKind.Relative));
+                        img.Source = new BitmapImage(new Uri("/Images/management.png", UriKind.Relative));
                         img.Width = 70;
                         img.Height = 70;
                         textblock = new TextBlock();
@@ -99,7 +99,7 @@ namespace Bookstore.UserControls
                         stackPnl = new StackPanel();
                         stackPnl.Orientation = Orientation.Vertical;
                         img = new Image();
-                        img.Source = new BitmapImage(new Uri("/Images/warehouse.png", UriKind.Relative));
+                        img.Source = new BitmapImage(new Uri("/Images/shopping-cart.png", UriKind.Relative));
                         img.Width = 70;
                         img.Height = 70;
                         textblock = new TextBlock();
@@ -124,7 +124,7 @@ namespace Bookstore.UserControls
                         stackPnl = new StackPanel();
                         stackPnl.Orientation = Orientation.Vertical;
                         img = new Image();
-                        img.Source = new BitmapImage(new Uri("/Images/warehouse.png", UriKind.Relative));
+                        img.Source = new BitmapImage(new Uri("/Images/accounting.png", UriKind.Relative));
                         img.Width = 70;
                         img.Height = 70;
                         textblock = new TextBlock();
@@ -181,34 +181,46 @@ namespace Bookstore.UserControls
 
         private void Account_Menu_Button_Click(object sender, RoutedEventArgs e)
         {
-            screen.Children.Clear();
-            menuBar_Tilte.Text = "Manager Account";
-            Manager_Account_UserControl myScreen = new Manager_Account_UserControl();
-            screen.Children.Add(myScreen);
+            if(!ConfigClass.menuOpen)
+            {
+                screen.Children.Clear();
+                menuBar_Tilte.Text = "Manager Account";
+                Manager_Account_UserControl myScreen = new Manager_Account_UserControl();
+                screen.Children.Add(myScreen);
+            }
         }
 
         private void Inventory_Menu_Button_Click(object sender, RoutedEventArgs e)
         {
-            screen.Children.Clear();
-            menuBar_Tilte.Text = "Manager Inventory";
-            Manager_Inventory_UserControl myScreen = new Manager_Inventory_UserControl();
-            screen.Children.Add(myScreen);
+            if (!ConfigClass.menuOpen)
+            {
+                screen.Children.Clear();
+                menuBar_Tilte.Text = "Manager Inventory";
+                Manager_Inventory_UserControl myScreen = new Manager_Inventory_UserControl();
+                screen.Children.Add(myScreen);
+            }
         }
 
         private void Checkout_Menu_Button_Click(object sender, RoutedEventArgs e)
         {
-            screen.Children.Clear();
-            menuBar_Tilte.Text = "Checkout";
-            Checkout_UserControl myScreen = new Checkout_UserControl();
-            screen.Children.Add(myScreen);
+            if (!ConfigClass.menuOpen)
+            {
+                screen.Children.Clear();
+                menuBar_Tilte.Text = "Checkout";
+                Checkout_UserControl myScreen = new Checkout_UserControl();
+                screen.Children.Add(myScreen);
+            }
         }
 
         private void SaleReport_Menu_Button_Click(object sender, RoutedEventArgs e)
         {
-            screen.Children.Clear();
-            menuBar_Tilte.Text = "Sale Report";
-            Sale_Report_UserControl myScreen = new Sale_Report_UserControl();
-            screen.Children.Add(myScreen);
+            if (!ConfigClass.menuOpen)
+            {
+                screen.Children.Clear();
+                menuBar_Tilte.Text = "Sale Report";
+                Sale_Report_UserControl myScreen = new Sale_Report_UserControl();
+                screen.Children.Add(myScreen);
+            }
         }
 
     }

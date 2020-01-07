@@ -8,7 +8,7 @@
              mc:Ignorable="d"  Loaded="UserControl_Loaded"
              d:DesignHeight="450" d:DesignWidth="1080">
     <DockPanel LastChildFill="True" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+        <DockPanel DockPanel.Dock="Top" LastChildFill="True">
             <Button Name="Add_Account" Click="Add_Account_Click" Content="Add Account" Margin="5 0 5 0" Width="120" Height="30"/>
             <Button Name="EditAccount_Button" Click="EditAccount_Button_Click" Content="Edit" Margin="5 0 5 0" Width="120" Height="30"/>
             <Button Name="DeleteAccount_Button" Click="DeleteAccount_Button_Click" Content="Delete" Margin="5 0 5 0" Width="120" Height="30"/>
@@ -16,12 +16,13 @@
             <Button DockPanel.Dock="Right" Style="{DynamicResource MaterialDesignToolButton}" >
                 <materialDesign:PackIcon Kind="Magnify" Opacity=".56"/>
             </Button>
-            <TextBox DockPanel.Dock="Right" Margin="8 0 0 0" materialDesign:HintAssist.Hint="Search" Padding="2 0 0 0" FontSize="15" Height="30" Background="White"
+            
+            <TextBox DockPanel.Dock="Right" Margin="200 0 0 0" materialDesign:HintAssist.Hint="Search" Padding="2 0 0 0" FontSize="15" Height="30" Background="White"
              BorderThickness="0"
-            Width="250" VerticalAlignment="Center" Name="SearchTextBox" KeyUp="SearchAccount_Keyup"/>
+             VerticalAlignment="Center" Name="SearchTextBox" KeyUp="SearchAccount_Keyup"/>
 
         </DockPanel>
-        <ListView Name="ManagerAccount_ListView" Margin="0 10 0 0" HorizontalAlignment="Stretch" MinHeight="380" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView Name="ManagerAccount_ListView" GridViewColumnHeader.Click="ManagerAccount_ListView_Click"  Margin="0 10 0 0" HorizontalAlignment="Stretch" MinHeight="380" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Edit" Click="MenuItem_Click"/>
@@ -32,11 +33,11 @@
                 <GridView>
                     <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding ID}"/>
                     <GridViewColumn Header="UserName" Width="120" DisplayMemberBinding="{Binding UserName}"/>
-                    <GridViewColumn Header="Type Account" Width="120" DisplayMemberBinding="{Binding TypeAccount}"/>
+                    <GridViewColumn Header="TypeAccount" Width="120" DisplayMemberBinding="{Binding TypeAccount}"/>
                     <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="DayofBirth" Width="100" DisplayMemberBinding="{Binding Dayofbirth}"/>
+                    <GridViewColumn Header="Dayofbirth" Width="100" DisplayMemberBinding="{Binding Dayofbirth}"/>
                     <GridViewColumn Header="Gender" Width="80" DisplayMemberBinding="{Binding Gender}"/>
-                    <GridViewColumn Header="PhoneNuber" Width="110" DisplayMemberBinding="{Binding PhoneNuber}"/>
+                    <GridViewColumn Header="PhoneNumber" Width="110" DisplayMemberBinding="{Binding PhoneNumber}"/>
                     <GridViewColumn Header="Address" Width="120" DisplayMemberBinding="{Binding Address}"/>
                     <GridViewColumn Header="MoreInfo" Width="120" DisplayMemberBinding="{Binding MoreInfo}"/>
                 </GridView>

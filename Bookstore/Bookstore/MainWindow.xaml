@@ -6,6 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:userControl="clr-namespace:Bookstore.UserControls"
         mc:Ignorable="d" Loaded="Window_Loaded"
+        Icon="Images/inventory.png"
         WindowState="Maximized"
         Title="Book Store" Height="450" Width="800" WindowStartupLocation="CenterScreen">
 
@@ -34,13 +35,13 @@
     </Window.Resources>
     <Window.Triggers>
         <!--close storyboard menu-->
-        <EventTrigger x:Name="abc" RoutedEvent="ButtonBase.Click" SourceName="ButtonClose">
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonClose">
             <BeginStoryboard x:Name="CloseMenu_BeginStoryboard" Storyboard="{StaticResource CloseMenu}"/>
         </EventTrigger>
         <!--end close storyboard menu-->
-        
+
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpen">
-            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+            <BeginStoryboard x:Name="OpenMenu_BeginStoryboard" Storyboard="{StaticResource OpenMenu}"/>
         </EventTrigger>
     </Window.Triggers>
     
@@ -55,7 +56,7 @@
                     <ColumnDefinition Width="13*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0" HorizontalAlignment="Left">
-                    <Button x:Name="ButtonOpen" Background="{x:Null}" BorderBrush="{x:Null}" Width="40" Height="40" Padding="0">
+                    <Button x:Name="ButtonOpen" Click="ButtonOpen_Click" Background="{x:Null}" BorderBrush="{x:Null}" Width="40" Height="40" Padding="0">
                         <materialDesign:PackIcon Kind="Menu" Foreground="#FF313131" Height="30" Width="30"/>
                     </Button>
                 </Grid>
@@ -66,7 +67,7 @@
         </materialDesign:ColorZone>
 
         <!--UserControl-->
-        <DockPanel Name="My_UserControl" Margin="0 40 0 0" Background="#F5F6F7"></DockPanel>
+        <DockPanel Name="My_UserControl" PreviewMouseDown="My_UserControl_MouseLeftButtonUp" Margin="0 40 0 0" Background="#F5F6F7"></DockPanel>
         
         <!--Popup Menu-->
         <Grid x:Name="GridMenu" Width="250" HorizontalAlignment="Left" Margin="-250 0 0 0" Background="#F2F2F2" RenderTransformOrigin="0.5,0.5">
@@ -87,7 +88,7 @@
                 </StackPanel>
             </StackPanel>
     
-            <Button x:Name="ButtonClose" Margin="0 0 5 0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="40" Height="40" Padding="0">
+            <Button x:Name="ButtonClose" Click="ButtonClose_Click" Margin="0 0 5 0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="40" Height="40" Padding="0">
                 <materialDesign:PackIcon Kind="Close" Height="30" Width="30"/>
             </Button>
         </Grid>

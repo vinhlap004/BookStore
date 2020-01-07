@@ -75,7 +75,7 @@
              VerticalAlignment="Center"/>
             
         </DockPanel>
-        <ListView Name="Customer_ListView" Margin="0 10 0 0" HorizontalAlignment="Stretch" MinHeight="380" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView Name="Customer_ListView" GridViewColumnHeader.Click="Customer_ListView_Click" Margin="0 10 0 0" HorizontalAlignment="Stretch" MinHeight="380" VerticalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ContextMenu>
                 <ContextMenu>
                     <MenuItem x:Name="EditMenuItem" Click="EditMenuItem_Click" Header="Edit"/>
@@ -86,12 +86,12 @@
                 <GridView>
                     <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding ID}"/>
                     <GridViewColumn Header="Type" Width="60" DisplayMemberBinding="{Binding Type}"/>
-                    <GridViewColumn Header="ProductName" Width="180" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Name" Width="180" DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Header="Catalogries" Width="150" DisplayMemberBinding="{Binding Catalogries}"/>
                     <GridViewColumn Header="Author" Width="160" DisplayMemberBinding="{Binding Author}"/>
                     <GridViewColumn Header="Deliver" Width="180" DisplayMemberBinding="{Binding Deliver}"/>
-                    <GridViewColumn Header="Prince" Width="105" DisplayMemberBinding="{Binding Price}"/>
-                    <GridViewColumn Header="Basis Prince" Width="105" DisplayMemberBinding="{Binding BasisPrice}"/>
+                    <GridViewColumn Header="Price" Width="105" DisplayMemberBinding="{Binding Price}"/>
+                    <GridViewColumn Header="BasisPrice" Width="105" DisplayMemberBinding="{Binding BasisPrice}"/>
                     <GridViewColumn Header="Amount" Width="80" DisplayMemberBinding="{Binding Amount}"/>
                 </GridView>
             </ListView.View>

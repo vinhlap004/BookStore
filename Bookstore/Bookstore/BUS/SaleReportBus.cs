@@ -15,7 +15,7 @@ namespace Bookstore.BUS
         public string Name { get; set; }
         public int Price { get; set; }
         public int BasisPrice { get; set; }
-        public double AmountSold { get; set; }
+        public int AmountSold { get; set; }
         public double Revenue { get; set; }
         public double Profit { get; set; }
     }
@@ -117,24 +117,39 @@ namespace Bookstore.BUS
             List<TransactionHistory> mytransations = (from bill in myBills
                                                       join transaction in transactionHistories on bill.ID equals transaction.BillID
                                                       select transaction).ToList();
-            List<int> productsID = mytransations.Select(x => x.ProductID).Distinct().ToList();
 
-            foreach (var item in productsID)
+            List<TransactionHistory> transations = (from bill in myBills
+                                                    join transaction in transactionHistories on bill.ID equals transaction.BillID
+                                                    select transaction).ToList();
+
+            for (int i = 0; i < mytransations.Count; i++)
+            {
+                for (int j = i + 1; j < mytransations.Count - 1; j++)
+                {
+                    if (mytransations[i].ProductID == mytransations[j].ProductID && mytransations[i].ProductPrice == mytransations[j].ProductPrice)
+                    {
+                        mytransations.Remove(mytransations[j]);
+                        j--;
+                    }
+                }
+            }
+
+            foreach (var item in mytransations)
             {
                 Product myProduct = new Product();
-                myProduct = products.Find(prod => prod.ID == item);
-                var transOfProduct = (from trans in mytransations where trans.ProductID == item select trans).ToList();
+                myProduct = products.Find(prod => prod.ID == item.ProductID);
+                var transOfProduct = (from trans in transations where trans.ProductID == item.ProductID && trans.ProductPrice == item.ProductPrice select trans).ToList();
                 var unit = transOfProduct.Select(x => x.Unit).Sum();
                 BindingSaleReport salereport = new BindingSaleReport
                 {
                     ID = myProduct.ID,
                     Type = myProduct.Type,
                     Name = myProduct.Name,
-                    Price = myProduct.Price,
-                    BasisPrice = myProduct.BasisPrice,
+                    Price = transOfProduct.First().ProductPrice,
+                    BasisPrice = transOfProduct.First().ProductBasisPrice,
                     AmountSold = unit,
-                    Revenue = myProduct.Price * unit,
-                    Profit = myProduct.Price * unit - myProduct.BasisPrice * unit,
+                    Revenue = transOfProduct.First().ProductPrice * unit,
+                    Profit = myProduct.Price * unit - transOfProduct.First().ProductBasisPrice * unit,
                 };
                 result.Add(salereport);
             }

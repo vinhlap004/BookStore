@@ -58,8 +58,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -139,6 +141,9 @@
     <Compile Include="UserControls\Manager_Inventory_UserControl.xaml.cs">
       <DependentUpon>Manager_Inventory_UserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Pickday_UserControl.xaml.cs">
+      <DependentUpon>Pickday_UserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Sale_Report_UserControl.xaml.cs">
       <DependentUpon>Sale_Report_UserControl.xaml</DependentUpon>
     </Compile>
@@ -193,6 +198,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Manager_Inventory_UserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Pickday_UserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -264,6 +273,18 @@
       <DependentUpon>Bookstore.edmx</DependentUpon>
       <LastGenOutput>Bookstore.cs</LastGenOutput>
     </Content>
+    <Resource Include="Images\inventory.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\accounting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\management.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\shopping-cart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

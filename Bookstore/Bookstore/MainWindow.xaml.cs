@@ -14,8 +14,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Bookstore
 {
+    public static class ConfigClass
+    {
+    public static bool menuOpen { get; set; }
+    }
+
+    //bool menuOpen = false;
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -25,7 +32,7 @@ namespace Bookstore
         public MainWindow()
         {
             InitializeComponent();
-
+            ConfigClass.menuOpen = false;
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.ShowDialog();
             if (loginWindow.DialogResult == false)
@@ -41,7 +48,6 @@ namespace Bookstore
         List<int> usable_Button = new List<int>();
         // List button
         List<Button> myButtonList = new List<Button>();
-
         /// <summary>
         /// load các button mà user có thể sự dụng được lên màn hình
         /// </summary>
@@ -147,6 +153,7 @@ namespace Bookstore
             My_UserControl.Children.Add(home_Screen);
 
             CloseMenu_BeginStoryboard.Storyboard.Begin();
+            ConfigClass.menuOpen = false;
         }
 
         private void Account_Menu_Button_Click(object sender, RoutedEventArgs e)
@@ -157,6 +164,7 @@ namespace Bookstore
             My_UserControl.Children.Add(home_Screen);
 
             CloseMenu_BeginStoryboard.Storyboard.Begin();
+            ConfigClass.menuOpen = false;
         }
 
         private void Inventory_Menu_Button_Click(object sender, RoutedEventArgs e)
@@ -167,6 +175,7 @@ namespace Bookstore
             My_UserControl.Children.Add(home_Screen);
 
             CloseMenu_BeginStoryboard.Storyboard.Begin();
+            ConfigClass.menuOpen = false;
         }
 
         private void Checkout_Menu_Button_Click(object sender, RoutedEventArgs e)
@@ -177,6 +186,7 @@ namespace Bookstore
             My_UserControl.Children.Add(home_Screen);
 
             CloseMenu_BeginStoryboard.Storyboard.Begin();
+            ConfigClass.menuOpen = false;
         }
 
         private void SaleReport_Menu_Button_Click(object sender, RoutedEventArgs e)
@@ -187,12 +197,14 @@ namespace Bookstore
             My_UserControl.Children.Add(home_Screen);
 
             CloseMenu_BeginStoryboard.Storyboard.Begin();
+            ConfigClass.menuOpen = false;
         }
 
         private void Logout_Menu_Button_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
             CloseMenu_BeginStoryboard.Storyboard.Begin();
+            ConfigClass.menuOpen = false;
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.ShowDialog();
             if (loginWindow.DialogResult == false)
@@ -216,6 +228,31 @@ namespace Bookstore
                 Home_UserControl home_Screen = new Home_UserControl(usable_Button, My_UserControl, MenuBar_Tilte_TextBlock);
                 My_UserControl.Children.Add(home_Screen); 
                 this.Show();
+            }
+        }
+
+        private void My_UserControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (ConfigClass.menuOpen)
+            {
+                CloseMenu_BeginStoryboard.Storyboard.Begin();
+                ConfigClass.menuOpen = false;
+            }
+        }
+
+        private void ButtonOpen_Click(object sender, RoutedEventArgs e)
+        {
+            
+            OpenMenu_BeginStoryboard.Storyboard.Begin();
+            ConfigClass.menuOpen = true;
+        }
+
+        private void ButtonClose_Click(object sender, RoutedEventArgs e)
+        {
+            if (ConfigClass.menuOpen)
+            {
+                CloseMenu_BeginStoryboard.Storyboard.Begin();
+                ConfigClass.menuOpen = false;
             }
         }
     }

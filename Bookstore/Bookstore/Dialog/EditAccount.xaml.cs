@@ -59,7 +59,6 @@ namespace Bookstore.Dialog
             MoreInfo.Text = userInfo.MoreInfo;
         }
 
-
         private void EditAccount_Button_Click(object sender, RoutedEventArgs e)
         {
             int typeAccount;

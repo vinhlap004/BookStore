@@ -90,3 +90,5 @@ C:\Users\linh\Desktop\nmcnpm\FinalProject_Software_Engineering_BookStore\Booksto
 C:\Users\linh\Desktop\nmcnpm\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\obj\Debug\Bookstore.csproj.CopyComplete
 C:\Users\linh\Desktop\nmcnpm\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\obj\Debug\Bookstore.exe
 C:\Users\linh\Desktop\nmcnpm\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\obj\Debug\Bookstore.pdb
+C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\obj\Debug\UserControls\Pickday_UserControl.g.cs
+C:\Users\Dell\source\repos\Code_HK1_2019_2020\Code_C#\NMCNPM\FinalProject_Software_Engineering_BookStore\Bookstore\Bookstore\obj\Debug\UserControls\Pickday_UserControl.baml
