@@ -39,7 +39,6 @@ namespace Bookstore.BUS
         /// <returns></returns>
         public List<BindingSaleReport> getSaleReportByTime(DateTime dateTime, int mode)
         {
-            //DateTime date = DateTime.Today;
             List<BindingSaleReport> result = new List<BindingSaleReport>();
             List<Bill> myBills = new List<Bill>();
             switch (mode)
@@ -75,7 +74,8 @@ namespace Bookstore.BUS
 
             for (int i = 0; i < mytransations.Count; i++)
             {
-                for (int j = i+1; j < mytransations.Count-1; j++)
+
+                for (int j = i+1; j < mytransations.Count; j++)
                 {
                     if (mytransations[i].ProductID == mytransations[j].ProductID && mytransations[i].ProductPrice == mytransations[j].ProductPrice)
                     {
@@ -124,7 +124,7 @@ namespace Bookstore.BUS
 
             for (int i = 0; i < mytransations.Count; i++)
             {
-                for (int j = i + 1; j < mytransations.Count - 1; j++)
+                for (int j = i + 1; j < mytransations.Count; j++)
                 {
                     if (mytransations[i].ProductID == mytransations[j].ProductID && mytransations[i].ProductPrice == mytransations[j].ProductPrice)
                     {
