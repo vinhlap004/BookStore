@@ -122,7 +122,7 @@ namespace Bookstore.Dialog
                 MoreInfo = MoreInfo.Text,
             };
             db.updateUserInfo(newUserInfo);
-            ManagerAccount_ListView.ItemsSource = managerAccount.Show();
+            ManagerAccount_ListView.ItemsSource = managerAccount.showListAccount();
             MessageBox.Show("Edit Account Success");
             Close();
         }

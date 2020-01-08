@@ -87,7 +87,7 @@
                     <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding ID}"/>
                     <GridViewColumn Header="Type" Width="60" DisplayMemberBinding="{Binding Type}"/>
                     <GridViewColumn Header="Name" Width="180" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Catalogries" Width="150" DisplayMemberBinding="{Binding Catalogries}"/>
+                    <GridViewColumn Header="Catagories" Width="150" DisplayMemberBinding="{Binding Catagories}"/>
                     <GridViewColumn Header="Author" Width="160" DisplayMemberBinding="{Binding Author}"/>
                     <GridViewColumn Header="Deliver" Width="180" DisplayMemberBinding="{Binding Deliver}"/>
                     <GridViewColumn Header="Price" Width="105" DisplayMemberBinding="{Binding Price}"/>

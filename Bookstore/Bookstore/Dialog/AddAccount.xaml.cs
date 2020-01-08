@@ -59,7 +59,8 @@ namespace Bookstore.Dialog
                 Password = PasswordBox.Password,
                 TypeAccountID = typeAccount
             };
-            db.addAccount(newAccount);
+            managerAccount.addAccount(newAccount);
+            //db.addAccount(newAccount);
 
             string gender;
             if (male_Gender.IsChecked==true)
@@ -80,8 +81,10 @@ namespace Bookstore.Dialog
                 Address = Adress.Text,
                 MoreInfo = MoreInfo.Text
             };
-            db.addUserInfo(newUserInfo);
-            ManagerAccount_ListView.ItemsSource = managerAccount.Show();
+            //db.addUserInfo(newUserInfo);
+            managerAccount.addUserInfo(newUserInfo);
+
+            ManagerAccount_ListView.ItemsSource = managerAccount.showListAccount();
             MessageBox.Show("Add Account Success");
             Close();
         }

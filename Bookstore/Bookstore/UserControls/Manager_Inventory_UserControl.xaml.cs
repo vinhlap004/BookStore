@@ -98,7 +98,7 @@ namespace Bookstore.UserControls
         private void UpdateProduct_Button_Click(object sender, RoutedEventArgs e)
         {
             if (this.Customer_ListView.SelectedItem == null)
-                MessageBox.Show("Bạn phải chọn sản phẩm trước");
+                MessageBox.Show("You haven't pick product");
             else
             {
                 var editProductScreen = new UpdateProduct(this.Customer_ListView.SelectedItem as Product);
@@ -116,7 +116,7 @@ namespace Bookstore.UserControls
         private void Delete_Button_Click(object sender, RoutedEventArgs e)
         {
             if (this.Customer_ListView.SelectedItem == null)
-                MessageBox.Show("Bạn phải chọn sản phẩm trước");
+                MessageBox.Show("You haven't pick product");
             else
             {
 

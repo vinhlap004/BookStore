@@ -14,8 +14,17 @@ namespace Bookstore
     
     public partial class Bill
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Bill()
+        {
+            this.TransactionHistories = new HashSet<TransactionHistory>();
+        }
+    
         public int ID { get; set; }
         public string DateCreated { get; set; }
         public double TotalCost { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionHistory> TransactionHistories { get; set; }
     }
 }

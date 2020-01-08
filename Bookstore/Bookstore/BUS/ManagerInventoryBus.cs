@@ -27,7 +27,7 @@ namespace Bookstore.BUS
 
         static public List<Product> filterCatalogries(List<Product> inputList, string filterContains)
         {
-            return (from item in inputList where item.Catalogries.ToLower().Contains(filterContains.ToLower()) select item).ToList<Product>();
+            return (from item in inputList where item.Catagories.ToLower().Contains(filterContains.ToLower()) select item).ToList<Product>();
         }
 
         static public List<Product> filterDeliver(List<Product> inputList, string filterContains)
@@ -48,7 +48,7 @@ namespace Bookstore.BUS
 
         public static void addProduct(int id, string type, string name, int price, int basisPrice, int amount, string author, string deliver, string catalogries)
         {
-            Product newProduct = new Product() { ID = id, Amount = amount, Author = author, Catalogries = catalogries, Deliver = deliver, Name = name, Price = price, BasisPrice = basisPrice, Type = type };
+            Product newProduct = new Product() { ID = id, Amount = amount, Author = author, Catagories = catalogries, Deliver = deliver, Name = name, Price = price, BasisPrice = basisPrice, Type = type };
 
             DataAccess.addProduct(newProduct);
         }
@@ -69,7 +69,7 @@ namespace Bookstore.BUS
             if (productChange.Type != "Stationery")
                 productChange.Author = author != "" ? author : productChange.Author;
 
-            productChange.Catalogries = catalogries != "" ? catalogries : productChange.Catalogries;
+            productChange.Catagories = catalogries != "" ? catalogries : productChange.Catagories;
 
             productChange.Deliver = deliver != "" ? deliver : productChange.Deliver;
 

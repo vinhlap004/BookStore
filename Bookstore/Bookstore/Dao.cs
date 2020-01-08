@@ -207,7 +207,7 @@ namespace Bookstore
             productChange.Price = product.Price;
             productChange.Amount = product.Amount;
             productChange.Author = product.Author;
-            productChange.Catalogries = product.Catalogries;
+            productChange.Catagories = product.Catagories;
             productChange.Deliver = product.Deliver;
 
             DB.SaveChanges();

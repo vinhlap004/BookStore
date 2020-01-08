@@ -19,7 +19,7 @@ namespace Bookstore
         public string Password { get; set; }
         public int TypeAccountID { get; set; }
     
-        public virtual TypeAccount TypeAccount { get; set; }
         public virtual UserInfo UserInfo { get; set; }
+        public virtual TypeAccount TypeAccount { get; set; }
     }
 }

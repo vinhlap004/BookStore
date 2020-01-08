@@ -25,7 +25,5 @@ namespace Bookstore
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Account> Accounts { get; set; }
-        public virtual TypeAccount TypeAccount11 { get; set; }
-        public virtual TypeAccount TypeAccount2 { get; set; }
     }
 }

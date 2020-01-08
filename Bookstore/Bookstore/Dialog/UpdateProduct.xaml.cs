@@ -32,7 +32,7 @@ namespace Bookstore.Dialog
             this.Amount.Text = product.Amount.ToString();
             this.Author.Text = product.Author;
             this.Deliver.Text = product.Deliver;
-            this.Catalogries.Text = product.Catalogries;
+            this.Catalogries.Text = product.Catagories;
         }
 
         private void EditProduct_Button_Click(object sender, RoutedEventArgs e)

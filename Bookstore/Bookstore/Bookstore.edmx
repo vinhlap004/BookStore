@@ -32,7 +32,7 @@
           <Property Name="Author" Type="ntext" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
           <Property Name="BasisPrice" Type="int" Nullable="false" />
-          <Property Name="Catalogries" Type="ntext" Nullable="false" />
+          <Property Name="Catagories" Type="ntext" Nullable="false" />
           <Property Name="Amount" Type="int" Nullable="false" />
           <Property Name="Deliver" Type="ntext" Nullable="false" />
         </EntityType>
@@ -78,15 +78,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TypeAccount_TypeAccount">
-          <End Role="TypeAccount" Type="Self.TypeAccount" Multiplicity="1" />
-          <End Role="TypeAccount1" Type="Self.TypeAccount" Multiplicity="0..1" />
+        <Association Name="FK_TransactionHistory_Bill">
+          <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
+          <End Role="TransactionHistory" Type="Self.TransactionHistory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TypeAccount">
+            <Principal Role="Bill">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="TypeAccount1">
+            <Dependent Role="TransactionHistory">
+              <PropertyRef Name="BillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionHistory_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="TransactionHistory" Type="Self.TransactionHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
               <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionHistory">
+              <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -113,9 +125,13 @@
             <End Role="TypeAccount" EntitySet="TypeAccount" />
             <End Role="Account" EntitySet="Account" />
           </AssociationSet>
-          <AssociationSet Name="FK_TypeAccount_TypeAccount" Association="Self.FK_TypeAccount_TypeAccount">
-            <End Role="TypeAccount" EntitySet="TypeAccount" />
-            <End Role="TypeAccount1" EntitySet="TypeAccount" />
+          <AssociationSet Name="FK_TransactionHistory_Bill" Association="Self.FK_TransactionHistory_Bill">
+            <End Role="Bill" EntitySet="Bill" />
+            <End Role="TransactionHistory" EntitySet="TransactionHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionHistory_Product" Association="Self.FK_TransactionHistory_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="TransactionHistory" EntitySet="TransactionHistory" />
           </AssociationSet>
           <AssociationSet Name="FK_UserInfo_Account" Association="Self.FK_UserInfo_Account">
             <End Role="Account" EntitySet="Account" />
@@ -134,62 +150,32 @@
           <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TypeAccountID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TypeAccount" Relationship="Self.FK_Account_TypeAccount1" FromRole="Account" ToRole="TypeAccount" />
           <NavigationProperty Name="UserInfo" Relationship="BookstoreModel.FK_UserInfo_Account" FromRole="Account" ToRole="UserInfo" />
+          <NavigationProperty Name="TypeAccount" Relationship="BookstoreModel.FK_Account_TypeAccount1" FromRole="Account" ToRole="TypeAccount" />
         </EntityType>
-        <EntityType Name="TypeAccount">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="TypeAccount1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_TypeAccount1" FromRole="TypeAccount" ToRole="Account" />
-          <NavigationProperty Name="TypeAccount11" Relationship="Self.FK_TypeAccount_TypeAccount" FromRole="TypeAccount" ToRole="TypeAccount1" />
-          <NavigationProperty Name="TypeAccount2" Relationship="Self.FK_TypeAccount_TypeAccount" FromRole="TypeAccount1" ToRole="TypeAccount" />
-        </EntityType>
-        <Association Name="FK_Account_TypeAccount1">
-          <End Role="TypeAccount" Type="Self.TypeAccount" Multiplicity="1" />
-          <End Role="Account" Type="Self.Account" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TypeAccount">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Account">
-              <PropertyRef Name="TypeAccountID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TypeAccount_TypeAccount">
-          <End Role="TypeAccount" Type="Self.TypeAccount" Multiplicity="1" />
-          <End Role="TypeAccount1" Type="Self.TypeAccount" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="TypeAccount">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TypeAccount1">
-              <PropertyRef Name="ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="BookstoreEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Account" />
-          <EntitySet Name="TypeAccounts" EntityType="Self.TypeAccount" />
-          <AssociationSet Name="FK_Account_TypeAccount1" Association="Self.FK_Account_TypeAccount1">
-            <End Role="TypeAccount" EntitySet="TypeAccounts" />
-            <End Role="Account" EntitySet="Accounts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TypeAccount_TypeAccount" Association="Self.FK_TypeAccount_TypeAccount">
-            <End Role="TypeAccount" EntitySet="TypeAccounts" />
-            <End Role="TypeAccount1" EntitySet="TypeAccounts" />
-          </AssociationSet>
           <EntitySet Name="UserInfoes" EntityType="BookstoreModel.UserInfo" />
           <AssociationSet Name="FK_UserInfo_Account" Association="BookstoreModel.FK_UserInfo_Account">
             <End Role="Account" EntitySet="Accounts" />
             <End Role="UserInfo" EntitySet="UserInfoes" />
           </AssociationSet>
           <EntitySet Name="Bills" EntityType="BookstoreModel.Bill" />
-          <EntitySet Name="Products" EntityType="BookstoreModel.Product" />
           <EntitySet Name="TransactionHistories" EntityType="BookstoreModel.TransactionHistory" />
+          <AssociationSet Name="FK_TransactionHistory_Bill" Association="BookstoreModel.FK_TransactionHistory_Bill">
+            <End Role="Bill" EntitySet="Bills" />
+            <End Role="TransactionHistory" EntitySet="TransactionHistories" />
+          </AssociationSet>
+          <EntitySet Name="TypeAccounts" EntityType="BookstoreModel.TypeAccount" />
+          <AssociationSet Name="FK_Account_TypeAccount1" Association="BookstoreModel.FK_Account_TypeAccount1">
+            <End Role="TypeAccount" EntitySet="TypeAccounts" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <EntitySet Name="Products" EntityType="BookstoreModel.Product" />
+          <AssociationSet Name="FK_TransactionHistory_Product" Association="BookstoreModel.FK_TransactionHistory_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="TransactionHistory" EntitySet="TransactionHistories" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UserInfo">
           <Key>
@@ -223,20 +209,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="DateCreated" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TotalCost" Type="Double" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Author" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <Property Name="BasisPrice" Type="Int32" Nullable="false" />
-          <Property Name="Catalogries" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Amount" Type="Int32" Nullable="false" />
-          <Property Name="Deliver" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TransactionHistories" Relationship="BookstoreModel.FK_TransactionHistory_Bill" FromRole="Bill" ToRole="TransactionHistory" />
         </EntityType>
         <EntityType Name="TransactionHistory">
           <Key>
@@ -248,7 +221,68 @@
           <Property Name="ProductBasisPrice" Type="Int32" Nullable="false" />
           <Property Name="ProductPrice" Type="Int32" Nullable="false" />
           <Property Name="Unit" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bill" Relationship="BookstoreModel.FK_TransactionHistory_Bill" FromRole="TransactionHistory" ToRole="Bill" />
+          <NavigationProperty Name="Product" Relationship="BookstoreModel.FK_TransactionHistory_Product" FromRole="TransactionHistory" ToRole="Product" />
         </EntityType>
+        <Association Name="FK_TransactionHistory_Bill">
+          <End Type="BookstoreModel.Bill" Role="Bill" Multiplicity="1" />
+          <End Type="BookstoreModel.TransactionHistory" Role="TransactionHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionHistory">
+              <PropertyRef Name="BillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TypeAccount">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeAccount1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Accounts" Relationship="BookstoreModel.FK_Account_TypeAccount1" FromRole="TypeAccount" ToRole="Account" />
+        </EntityType>
+        <Association Name="FK_Account_TypeAccount1">
+          <End Type="BookstoreModel.TypeAccount" Role="TypeAccount" Multiplicity="1" />
+          <End Type="BookstoreModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeAccount">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="TypeAccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Author" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="BasisPrice" Type="Int32" Nullable="false" />
+          <Property Name="Catagories" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <Property Name="Deliver" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TransactionHistories" Relationship="BookstoreModel.FK_TransactionHistory_Product" FromRole="Product" ToRole="TransactionHistory" />
+        </EntityType>
+        <Association Name="FK_TransactionHistory_Product">
+          <End Type="BookstoreModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="BookstoreModel.TransactionHistory" Role="TransactionHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionHistory">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -262,14 +296,6 @@
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="TypeAccountID" ColumnName="TypeAccountID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TypeAccounts">
-            <EntityTypeMapping TypeName="BookstoreModel.TypeAccount">
-              <MappingFragment StoreEntitySet="TypeAccount">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="TypeAccount1" ColumnName="TypeAccount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -295,21 +321,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="BookstoreModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="Deliver" ColumnName="Deliver" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Catalogries" ColumnName="Catalogries" />
-                <ScalarProperty Name="BasisPrice" ColumnName="BasisPrice" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Author" ColumnName="Author" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TransactionHistories">
             <EntityTypeMapping TypeName="BookstoreModel.TransactionHistory">
               <MappingFragment StoreEntitySet="TransactionHistory">
@@ -319,6 +330,29 @@
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="BillID" ColumnName="BillID" />
                 <ScalarProperty Name="STT" ColumnName="STT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeAccounts">
+            <EntityTypeMapping TypeName="BookstoreModel.TypeAccount">
+              <MappingFragment StoreEntitySet="TypeAccount">
+                <ScalarProperty Name="TypeAccount1" ColumnName="TypeAccount" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="BookstoreModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Deliver" ColumnName="Deliver" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Catagories" ColumnName="Catagories" />
+                <ScalarProperty Name="BasisPrice" ColumnName="BasisPrice" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

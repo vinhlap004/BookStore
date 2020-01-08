@@ -41,7 +41,7 @@ namespace Bookstore.BUS
 
         static public List<Product> filterCatalogries(List<Product> inputList, string filterContains)
         {
-            return (from item in inputList where item.Catalogries.ToLower().Contains(filterContains.ToLower()) select item).ToList<Product>();
+            return (from item in inputList where item.Catagories.ToLower().Contains(filterContains.ToLower()) select item).ToList<Product>();
         }
 
         static public List<Product> filterDeliver(List<Product> inputList, string filterContains)

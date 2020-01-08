@@ -33,7 +33,7 @@ namespace Bookstore.UserControls
         
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            ManagerAccount_ListView.ItemsSource = managerAccount.Show(); 
+            ManagerAccount_ListView.ItemsSource = managerAccount.showListAccount(); 
         }
 
         private void Add_Account_Click(object sender, RoutedEventArgs e)
@@ -71,7 +71,7 @@ namespace Bookstore.UserControls
                 else
                 {
                     db.deleteAccountByID(int.Parse(selectedItem.ID));
-                    ManagerAccount_ListView.ItemsSource = managerAccount.Show();
+                    ManagerAccount_ListView.ItemsSource = managerAccount.showListAccount();
                     MessageBox.Show("Delete success");
                 }
             }
@@ -107,7 +107,7 @@ namespace Bookstore.UserControls
                 else
                 {
                     db.deleteAccountByID(int.Parse(selectedItem.ID));
-                    ManagerAccount_ListView.ItemsSource = managerAccount.Show();
+                    ManagerAccount_ListView.ItemsSource = managerAccount.showListAccount();
                     MessageBox.Show("Delete success");
                 }
             }
@@ -117,7 +117,7 @@ namespace Bookstore.UserControls
         {
             string keyword = SearchTextBox.Text;
             ManagerAccount_ListView.ItemsSource = null;
-            var database = managerAccount.Show();
+            var database = managerAccount.showListAccount();
             if (keyword == "")
             {
                 ManagerAccount_ListView.ItemsSource = database;

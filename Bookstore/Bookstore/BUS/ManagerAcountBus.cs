@@ -24,7 +24,7 @@ namespace Bookstore.BUS
     class ManagerAcountBus
     {
         private static IDao accountdb = new Dao();
-        public List<BindingAccount> Show()
+        public List<BindingAccount> showListAccount()
         {
             accountdb = new Dao();
             var account = accountdb.getAllAccount();
@@ -52,6 +52,16 @@ namespace Bookstore.BUS
                 db.Add(item);
             }
             return db;
+        }
+
+        public void addAccount(Account newAccount)
+        {
+            accountdb.addAccount(newAccount);
+        }
+
+        public void addUserInfo(UserInfo newUserInfo)
+        {
+            accountdb.addUserInfo(newUserInfo);
         }
 
         static public List<Account> getAllAccount()
@@ -132,7 +142,7 @@ namespace Bookstore.BUS
 
         public List<BindingAccount> search(List<BindingAccount> database, string keyword)
         {
-            var accounts = Show();
+            var accounts = showListAccount();
 
             var account = accountdb.getAllAccount();
             var typeAccount = accountdb.getAllTypeAccount();
