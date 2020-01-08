@@ -61,6 +61,11 @@ namespace Bookstore.Dialog
 
         private void EditAccount_Button_Click(object sender, RoutedEventArgs e)
         {
+            if(account.ID == 1 && ConfigClass.IdLogin!= 1)
+            {
+                MessageBox.Show("It's Super admin you can edit this account");
+                return;
+            }
             string[] input = new string[4];
             //= { UserName.Text, PasswordBox.Password, Name.Text, PhoneNumber.Text };
             string password;

@@ -43,8 +43,6 @@ namespace Bookstore
             else
             {
                 username =loginWindow.usernameLogin;
-                ConfigClass.IdLogin = loginWindow.userIDLogin;
-                MessageBox.Show(ConfigClass.IdLogin.ToString());
             }
         }
         // lấy quyền sử dụng từ database
@@ -217,7 +215,6 @@ namespace Bookstore
             else
             {
                 username = loginWindow.usernameLogin;
-                ConfigClass.IdLogin = loginWindow.userIDLogin;
                 IDao db = new Dao();
                 myButtonList.Clear();
                 usable_Button.Clear();

@@ -48,6 +48,7 @@ namespace Bookstore
                         DialogResult = true;
                         usernameLogin = UserName_TextBox.Text;
                         userIDLogin = login.getUserIDbyUserName(usernameLogin);
+                        ConfigClass.IdLogin = userIDLogin;
                         Close();
                     }
                     else
@@ -79,6 +80,8 @@ namespace Bookstore
                         {
                             DialogResult = true;
                             usernameLogin = UserName_TextBox.Text;
+                            userIDLogin = login.getUserIDbyUserName(usernameLogin);
+                            ConfigClass.IdLogin = userIDLogin;
                             Close();
                         }
                         else
@@ -110,6 +113,8 @@ namespace Bookstore
                         {
                             DialogResult = true;
                             usernameLogin = UserName_TextBox.Text;
+                            userIDLogin = login.getUserIDbyUserName(usernameLogin);
+                            ConfigClass.IdLogin = userIDLogin;
                             Close();
                         }
                         else

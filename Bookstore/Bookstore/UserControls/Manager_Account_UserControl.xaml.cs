@@ -70,9 +70,16 @@ namespace Bookstore.UserControls
                 }
                 else
                 {
-                    db.deleteAccountByID(int.Parse(selectedItem.ID));
-                    ManagerAccount_ListView.ItemsSource = managerAccount.showListAccount();
-                    MessageBox.Show("Delete success");
+                    if (int.Parse(selectedItem.ID) == ConfigClass.IdLogin)
+                    {
+                        MessageBox.Show("You can't delete your account!!");
+                    }
+                    else
+                    {
+                        db.deleteAccountByID(int.Parse(selectedItem.ID));
+                        ManagerAccount_ListView.ItemsSource = managerAccount.showListAccount();
+                        MessageBox.Show("Delete success");
+                    }
                 }
             }
         }
@@ -100,15 +107,22 @@ namespace Bookstore.UserControls
             }
             else
             {
-                if(int.Parse(selectedItem.ID)==1)
+                if (int.Parse(selectedItem.ID) == 1)
                 {
                     MessageBox.Show("This is super admin you cant delete!!");
                 }
                 else
                 {
-                    db.deleteAccountByID(int.Parse(selectedItem.ID));
-                    ManagerAccount_ListView.ItemsSource = managerAccount.showListAccount();
-                    MessageBox.Show("Delete success");
+                    if (int.Parse(selectedItem.ID) == ConfigClass.IdLogin)
+                    {
+                        MessageBox.Show("You can't delete your account!!");
+                    }
+                    else
+                    {
+                        db.deleteAccountByID(int.Parse(selectedItem.ID));
+                        ManagerAccount_ListView.ItemsSource = managerAccount.showListAccount();
+                        MessageBox.Show("Delete success");
+                    }
                 }
             }
         }
