@@ -61,7 +61,36 @@ namespace Bookstore.Dialog
 
         private void EditAccount_Button_Click(object sender, RoutedEventArgs e)
         {
+            string[] input = new string[4];
+            //= { UserName.Text, PasswordBox.Password, Name.Text, PhoneNumber.Text };
+            string password;
+            if (PasswordBox.Password.Length == 0)
+            {
+                password = null;
+                //check input empty
+                input[0] = UserName.Text;
+                input[1] = "AbC@12345";
+                input[2] = Name.Text;
+                input[3] = PhoneNumber.Text;
+            }
+            else
+            {
+                password = PasswordBox.Password;
+                input[0] = UserName.Text;
+                input[1] = password;
+                input[2] = Name.Text;
+                input[3] = PhoneNumber.Text;
+            }
+
+            string error = managerAccount.checkInput(input);
             int typeAccount;
+
+            if (error != "")
+            {
+                MessageBox.Show(error);
+                return;
+            }
+
             if (Admin_typeAccount.IsChecked == true)
             {
                 typeAccount = 1;
@@ -70,15 +99,7 @@ namespace Bookstore.Dialog
             {
                 typeAccount = 2;
             }
-            string password;
-            if(PasswordBox.Password.Length==0)
-            {
-                password = null;
-            }
-            else
-            {
-                password = PasswordBox.Password;
-            }
+            
             db.updateAccount(account.ID, UserName.Text, password, typeAccount);
 
             string gender;
