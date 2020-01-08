@@ -22,7 +22,7 @@ namespace Bookstore
         void updateUserInfo(UserInfo newuserInfo);
         void deleteAccountByID(int ID);
 
-     
+        int getUserIDbyUsername(string username);
 
         void refreshDB();
 
@@ -269,6 +269,15 @@ namespace Bookstore
         public List<TransactionHistory> getAllTransactionHistories()
         {
             return DB.TransactionHistories.ToList();
+        }
+
+        public int getUserIDbyUsername(string username)
+        {
+            var ListAccount = DB.Accounts.ToList();
+            var account = (from acc in ListAccount
+                               where acc.Username == username
+                               select acc).FirstOrDefault<Account>();
+            return account.ID;
         }
     }
 }

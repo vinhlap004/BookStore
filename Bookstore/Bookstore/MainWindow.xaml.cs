@@ -19,7 +19,8 @@ namespace Bookstore
 {
     public static class ConfigClass
     {
-    public static bool menuOpen { get; set; }
+        public static bool menuOpen { get; set; }
+        public static int IdLogin { get; set; }
     }
 
     //bool menuOpen = false;
@@ -42,6 +43,8 @@ namespace Bookstore
             else
             {
                 username =loginWindow.usernameLogin;
+                ConfigClass.IdLogin = loginWindow.userIDLogin;
+                MessageBox.Show(ConfigClass.IdLogin.ToString());
             }
         }
         // lấy quyền sử dụng từ database
@@ -214,6 +217,7 @@ namespace Bookstore
             else
             {
                 username = loginWindow.usernameLogin;
+                ConfigClass.IdLogin = loginWindow.userIDLogin;
                 IDao db = new Dao();
                 myButtonList.Clear();
                 usable_Button.Clear();

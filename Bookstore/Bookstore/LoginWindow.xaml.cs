@@ -22,6 +22,7 @@ namespace Bookstore
     {
         LoginBus login = new LoginBus();
         public string usernameLogin { get; set; }
+        public int userIDLogin { get; set; }
         public LoginWindow()
         {
             InitializeComponent();
@@ -46,6 +47,7 @@ namespace Bookstore
                     {
                         DialogResult = true;
                         usernameLogin = UserName_TextBox.Text;
+                        userIDLogin = login.getUserIDbyUserName(usernameLogin);
                         Close();
                     }
                     else

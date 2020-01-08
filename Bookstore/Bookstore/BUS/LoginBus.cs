@@ -23,5 +23,10 @@ namespace Bookstore.BUS
             }
         }
         
+        public int getUserIDbyUserName(string username)
+        {
+            return accountdb.getUserIDbyUsername(username);
+        }
+
     }
 }
