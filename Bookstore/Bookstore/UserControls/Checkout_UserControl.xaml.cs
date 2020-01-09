@@ -216,6 +216,8 @@ namespace Bookstore.UserControls
             _billID = (int.Parse(_billID) + 1).ToString();
 
             //hoàn tất cập nhật thông tin, xử lí giao diện, dọn dẹp chuẩn bị cho cái bill tiếp theo
+            _subCost = 0;
+            _totalCost = 0;
             resetUI();
             clearBindingList();
             clearCostTextBlock();
