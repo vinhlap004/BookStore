@@ -21,6 +21,7 @@ namespace Bookstore
     {
         public static bool menuOpen { get; set; }
         public static int IdLogin { get; set; }
+        public static string username { get; set; }
     }
 
     //bool menuOpen = false;
@@ -29,7 +30,6 @@ namespace Bookstore
     /// </summary>
     public partial class MainWindow : Window
     {
-        string username;
         public MainWindow()
         {
             InitializeComponent();
@@ -42,7 +42,8 @@ namespace Bookstore
             }
             else
             {
-                username =loginWindow.usernameLogin;
+                ConfigClass.username =loginWindow.usernameLogin;
+                username_TextBlock.Text = ConfigClass.username;
             }
         }
         // lấy quyền sử dụng từ database
@@ -135,7 +136,7 @@ namespace Bookstore
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             IDao db = new Dao();
-            LoadButton(db.getUserType(username));
+            LoadButton(db.getUserType(ConfigClass.username));
             foreach (var item in myButtonList)
             {
                 ButtonPanel.Children.Add(item);
@@ -214,12 +215,13 @@ namespace Bookstore
             }
             else
             {
-                username = loginWindow.usernameLogin;
+                ConfigClass.username = loginWindow.usernameLogin;
+                username_TextBlock.Text = ConfigClass.username;
                 IDao db = new Dao();
                 myButtonList.Clear();
                 usable_Button.Clear();
                 ButtonPanel.Children.Clear();
-                LoadButton(db.getUserType(username));
+                LoadButton(db.getUserType(ConfigClass.username));
                 foreach (var item in myButtonList)
                 {
                     ButtonPanel.Children.Add(item);

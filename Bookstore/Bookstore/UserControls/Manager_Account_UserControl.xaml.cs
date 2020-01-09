@@ -64,15 +64,15 @@ namespace Bookstore.UserControls
             }
             else
             {
-                if (int.Parse(selectedItem.ID) == 1)
+                if (int.Parse(selectedItem.ID) == ConfigClass.IdLogin)
                 {
-                    MessageBox.Show("This is super admin you cant delete!!");
+                    MessageBox.Show("You can't delete your account!!");
                 }
                 else
                 {
-                    if (int.Parse(selectedItem.ID) == ConfigClass.IdLogin)
+                    if (int.Parse(selectedItem.ID) == 1)
                     {
-                        MessageBox.Show("You can't delete your account!!");
+                        MessageBox.Show("This is super admin you cant delete!!");
                     }
                     else
                     {
@@ -107,15 +107,15 @@ namespace Bookstore.UserControls
             }
             else
             {
-                if (int.Parse(selectedItem.ID) == 1)
+                if (int.Parse(selectedItem.ID) == ConfigClass.IdLogin)
                 {
-                    MessageBox.Show("This is super admin you cant delete!!");
+                    MessageBox.Show("You can't delete your account!!");
                 }
                 else
                 {
-                    if (int.Parse(selectedItem.ID) == ConfigClass.IdLogin)
+                    if (int.Parse(selectedItem.ID) == 1)
                     {
-                        MessageBox.Show("You can't delete your account!!");
+                        MessageBox.Show("This is super admin you cant delete!!");
                     }
                     else
                     {

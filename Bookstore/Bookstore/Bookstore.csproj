@@ -273,6 +273,7 @@
       <DependentUpon>Bookstore.edmx</DependentUpon>
       <LastGenOutput>Bookstore.cs</LastGenOutput>
     </Content>
+    <Resource Include="Images\open-book.png" />
     <Resource Include="Images\inventory.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
